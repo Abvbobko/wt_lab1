@@ -1,4 +1,4 @@
 package beans;
 
-public class flight {
+public class Flight {
 }
