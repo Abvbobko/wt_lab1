@@ -5,7 +5,7 @@ import service.ClientService;
 import service.exception.ServiceException;
 import service.factory.ServiceFactory;
 
-public class SingIn implements Command {
+public class SignIn implements Command {
 
     @Override
     public String execute(String request) {
