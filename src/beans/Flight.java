@@ -35,6 +35,7 @@ public class Flight {
     }
 
     public String getArrivalTime() {
+
         return DateTimeFormatter.ofPattern("HH:mm").format(arrivalTime);
     }
 

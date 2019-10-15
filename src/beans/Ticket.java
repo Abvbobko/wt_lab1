@@ -24,14 +24,14 @@ public class Ticket {
     }
 
     public void saveTicketToFile(){
-     ////
+     // TODO: add saving to file
     }
 
 
     @Override
     public String toString(){
         return "";
-
+        // ToDo: Add string form for ticket
         // create pic of ticket
     }
 

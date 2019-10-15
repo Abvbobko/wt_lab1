@@ -14,6 +14,7 @@ public class Pilot {
     }
 
     public String getInitials(){
+
         return String.format("%s %c.%c.", surname, name.charAt(0), middleName.charAt(0));
     }
 
