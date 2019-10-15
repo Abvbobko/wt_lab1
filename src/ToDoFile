@@ -1,0 +1,8 @@
+ToDO:
+    Beans:
+        Ticket:
+            - add saving to file
+            - Add string form for ticket
+        User:
+            - implements all methods
+

@@ -8,4 +8,9 @@ public class CSVFlightDAO implements FlightDAO {
     public void addFlight(Flight book) {
 
     }
+
+    @Override
+    public void deleteFlight(long idBook) {
+
+    }
 }

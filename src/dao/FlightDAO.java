@@ -7,7 +7,7 @@ public interface FlightDAO {
 
     // ToDO: Realise adding of Flight, add deleting flight, download flights from files
 
-   // void deleteFlight(long idBook);
+    void deleteFlight(long idBook);
     //void delete(Book book);
 
 

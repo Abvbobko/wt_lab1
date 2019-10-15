@@ -1,5 +1,7 @@
-package dao;
+package dao.factory;
 
+import dao.FlightDAO;
+import dao.UserDAO;
 import dao.impl.CSVFlightDAO;
 import dao.impl.CSVUserDAO;
 
