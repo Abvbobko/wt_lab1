@@ -18,12 +18,13 @@ final class CommandProvider {
 //...
     }
 
-    Command getCommand(String name){
+    Command getCommand(CommandName commandName){
 
-        CommandName commandName =null;
+        //CommandName commandName = null;
         Command command = null;
         try{
-            commandName = CommandName.valueOf(name.toUpperCase());
+            //commandName = CommandName.valueOf(name.toUpperCase());
+            //commandName = CommandName.getValueFromID(commandNumber);
             command = repository.get(commandName);
         }catch(IllegalArgumentException | NullPointerException e){
 //write log

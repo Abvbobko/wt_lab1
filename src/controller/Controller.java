@@ -5,13 +5,14 @@ public final class Controller {
     //ToDo: Controller factory
     private final CommandProvider provider = new CommandProvider();
 
-    private final char paramDelimeter = ' ';
+  //  private final char paramDelimeter = ' ';
 
-    public String executeTask(String request){
-        String commandName;
-
+    public String executeTask(int commandNumber, String request){
+    //    String commandName;
+        CommandName commandName = CommandName.getValueFromID(commandNumber);
         Command executionCommand;
-        commandName = request.substring(0, request.indexOf(paramDelimeter));
+        //commandName = request.substring(0, request.indexOf(paramDelimeter));
+
         executionCommand = provider.getCommand(commandName);
         String response;
         response = executionCommand.execute(request);

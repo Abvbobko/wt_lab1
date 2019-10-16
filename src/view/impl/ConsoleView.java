@@ -4,10 +4,9 @@ import controller.CommandName;
 import controller.Controller;
 import view.View;
 
-public class ConsoleView implements View {
+import java.util.Scanner;
 
-    private static final int HELP_COMMAND_NUMBER = 0;
-    private static final String HELP_COMMAND_NAME = "Show commands";
+public class ConsoleView implements View {
 
     private Controller controller = new Controller();
 
@@ -16,15 +15,33 @@ public class ConsoleView implements View {
         for (CommandName command: commands) {
             System.out.println(String.format("%d. %s;", command.getID(), command.getName()));
         }
-        System.out.println(String.format("%d. %s;", HELP_COMMAND_NUMBER, HELP_COMMAND_NAME));
     }
 
-    //ToDO: Add in menu Help
 
     public void start(){
         System.out.println("Welcome to our airline.");
         System.out.println("Please, choose command:");
         createListOfCommands();
 
+        //ToDO: получить строку введенную пользователем, получить из нее аргументы и команду и передать в контроллер
+        //CommandName command = CommandName.HELP;
+        int commandNumber = CommandName.HELP.getID();
+        Scanner in = new Scanner(System.in);
+        while (commandNumber != CommandName.EXIT.getID()) {
+            if (commandNumber == CommandName.HELP.getID()) {
+                createListOfCommands();
+            }
+            try {
+                commandNumber = in.nextInt();
+                if (commandNumber > CommandName.values().length){
+                    commandNumber = CommandName.HELP.getID();
+                }
+
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
     }
 }
