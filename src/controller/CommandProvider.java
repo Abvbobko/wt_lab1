@@ -19,6 +19,7 @@ final class CommandProvider {
     }
 
     Command getCommand(String name){
+
         CommandName commandName =null;
         Command command = null;
         try{

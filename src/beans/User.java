@@ -3,6 +3,7 @@ package beans;
 public class User {
 
     Ticket[] tickets;
+    boolean administration = false;
 
     public User(){
 
