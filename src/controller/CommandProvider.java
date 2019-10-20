@@ -15,19 +15,16 @@ final class CommandProvider {
         repository.put(CommandName.REGISTRATION, new Register());
         repository.put(CommandName.ADD_FLIGHT, new AddFlight());
         //repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
-//...
+
     }
 
     Command getCommand(CommandName commandName){
 
-        //CommandName commandName = null;
         Command command = null;
         try{
-            //commandName = CommandName.valueOf(name.toUpperCase());
-            //commandName = CommandName.getValueFromID(commandNumber);
             command = repository.get(commandName);
         }catch(IllegalArgumentException | NullPointerException e){
-//write log
+            //write log
             //command = repository.get(CommandName.WRONG_REQUEST);
         }
         return command;

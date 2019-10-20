@@ -6,9 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum CommandName {
-    SIGN_IN(1, "Sign In"), REGISTRATION(2, "Register"), ADD_FLIGHT(3, "Add flight"),
-    HELP(0, "Show commands"),
-    EXIT(CommandName.values().length, "Exit");
+    HELP(0, "Show commands"), SIGN_IN(1, "Sign In"), REGISTRATION(2, "Register"), ADD_FLIGHT(3, "Add flight"),
+    EXIT(4, "Exit");
 
     private final int id;
     private final String name;

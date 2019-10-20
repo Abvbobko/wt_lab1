@@ -1,18 +1,24 @@
 package controller.impl;
 
-import controller.Command;
+import controller.ConsoleCommand;
 import service.ClientService;
 import service.exception.ServiceException;
 import service.factory.ServiceFactory;
 
-public class SignIn implements Command {
+public class SignIn implements ConsoleCommand {
 
     @Override
     public String execute(String request) {
         String login = null;
         String password = null;
         String response = null;
-// get parameters from request and initialize the variables login and password
+
+        String delimiters = "[ ]+";
+
+        //ToDo: check that request has two args
+        login = request.split(delimiters)[0];
+        password = request.split(delimiters)[1];
+
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getClientService();
         try {
@@ -24,4 +30,11 @@ public class SignIn implements Command {
         }
         return response;
     }
+
+    @Override
+    public String getParametersInfo() {
+        return "Enter login and password by space.";
+    }
+
+
 }
