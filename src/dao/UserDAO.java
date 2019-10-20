@@ -7,6 +7,6 @@ public interface UserDAO {
     // todo: May be add workers of airline(administrations)
 
 
-    void signIn(String login, String password);
-    void registration(String login, String password);
+    User signIn(String login, String password);
+    User registration(String login, String password);
 }

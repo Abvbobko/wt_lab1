@@ -18,21 +18,27 @@ public class CSVUserDAO implements UserDAO {
     private static final Map<String, Pair<String, User>> users = new HashMap<>();
 
     @Override
-    public void signIn(String login, String password) {
+    public User signIn(String login, String password) {
         if (users.get(login).getKey().equals(password)){
-            // return User!!!
+            return users.get(login).getValue();
         }
         //// именно в этом методы мы связываемся с базой данных и проверяем
         //корректность логина и пароля
+        return new User(); //ToDo: delete this string and throw error
     }
 
     @Override
-    public void registration(String login, String password) {
+    public User registration(String login, String password) {
         if (users.get(login) == null){
 
             // may be return user
-            users.put(login, new Pair<>(password, new User()));
+            User newUser = new User();
+            users.put(login, new Pair<>(password, newUser));
+            return newUser;
         }
+
+
+        return new User(); // ToDo: It's temp. Throw the error
     }
 
     private void readUsersFromFile() {
@@ -52,7 +58,7 @@ public class CSVUserDAO implements UserDAO {
         }
     }
 
-        private void writeUsersFromFile(){
+        private void writeUsersToFile(){
 
-    }
+        }
 }
