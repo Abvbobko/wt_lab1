@@ -31,7 +31,7 @@ public class ConsoleView implements View {
             }
             try {
                 commandNumber = in.nextInt();
-                
+
                 if (commandNumber > CommandName.values().length){
                     commandNumber = CommandName.HELP.getID();
                 }

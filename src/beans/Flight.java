@@ -9,10 +9,14 @@ public class Flight {
     private LocalTime departureTime;
     private LocalTime arrivalTime;
     private int numberOfFreeSeats;
+    private String fromCity;
+    private String toCity;
     private Plane plane;
 
-    public Flight(LocalDate dateOfFlight, LocalTime departure,
+    public Flight(String fromCity, String toCity, LocalDate dateOfFlight, LocalTime departure,
                   LocalTime arrival, Plane plane) {
+        this.fromCity = fromCity;
+        this.toCity = toCity;
         this.dateOfFlight = dateOfFlight;
         this.departureTime = departure;
         this.arrivalTime = arrival;
@@ -20,8 +24,10 @@ public class Flight {
         this.numberOfFreeSeats = plane.getNumberOfSeats();
     }
 
-    public Flight(LocalDate dateOfFlight, LocalTime departure,
+    public Flight(String fromCity, String toCity, LocalDate dateOfFlight, LocalTime departure,
                   LocalTime arrival, Plane plane, int numberOfFreeSeats) {
+        this.fromCity = fromCity;
+        this.toCity = toCity;
         this.dateOfFlight = dateOfFlight;
         this.departureTime = departure;
         this.arrivalTime = arrival;
@@ -61,6 +67,10 @@ public class Flight {
         }
         numberOfFreeSeats -= occupiedSeats;
         return true;
+    }
+
+    public int getID(){
+        return this.hashCode();
     }
 }
 

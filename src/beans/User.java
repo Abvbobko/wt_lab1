@@ -2,11 +2,15 @@ package beans;
 
 public class User {
 
-    Ticket[] tickets;
+    private Ticket[] tickets;
     boolean administration = false;
 
     public User(){
 
+    }
+
+    public User(Ticket[] tickets){
+        this.tickets = tickets;
     }
 
     public void addTicket(Ticket ticket){
