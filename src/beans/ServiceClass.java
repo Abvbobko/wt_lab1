@@ -1,6 +1,8 @@
 package beans;
 
-public enum ServiceClass {
+import java.io.Serializable;
+
+public enum ServiceClass implements Serializable {
     ECONOMY("E"), BUSINESS("B");
 
     String id;

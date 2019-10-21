@@ -7,7 +7,7 @@ import java.util.Map;
 
 public enum CommandName {
     HELP(0, "Show commands"), SIGN_IN(1, "Sign In"), REGISTRATION(2, "Register"), ADD_FLIGHT(3, "Add flight"),
-    EXIT(4, "Exit");
+    BUY_TICKET(4, "Buy ticket"), EXIT(5, "Exit");
 
     private final int id;
     private final String name;

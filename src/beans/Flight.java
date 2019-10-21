@@ -1,10 +1,11 @@
 package beans;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Flight {
+public class Flight implements Serializable {
     private LocalDate dateOfFlight;
     private LocalTime departureTime;
     private LocalTime arrivalTime;

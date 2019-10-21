@@ -1,8 +1,9 @@
 package beans;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Plane {
+public class Plane implements Serializable {
     private Pilot pilot;
     final private String brand;
     final private int numberOfSeats;

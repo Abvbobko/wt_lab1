@@ -8,8 +8,10 @@ import service.ClientService;
 import service.exception.ServiceException;
 
 public class ClientServiceImpl implements ClientService {
+    private User currentUser = null;
+
     @Override
-    public void singIn(String login, String password) throws ServiceException {
+    public boolean singIn(String login, String password) throws ServiceException {
 // проверяем параметры
         if(login == null || login.isEmpty()){
             throw new ServiceException("Incorrect login");
@@ -17,22 +19,29 @@ public class ClientServiceImpl implements ClientService {
         // реализуем функционал логинации пользователя в системе
 
         //ToDO: uncomment try
-        //try{
+        try{
             DAOFactory daoObjectFactory = DAOFactory.getInstance();
             UserDAO userDAO = daoObjectFactory.getUserDAO();
-            userDAO.signIn(login, password);
+            currentUser = userDAO.signIn(login, password);
+            if (currentUser != null) {
+                return true;
+            }
 
-       // } catch(DAOException e){
-         //   throw new ServiceException(e);
-     //   }
+            //ToDo: похоже на фигню
+            throw new ServiceException("Incorrect login or password");
 
+        } catch(ServiceException e){
+            throw new ServiceException(e);
+        }
     }
 
     @Override
     public void singOut(String login) throws ServiceException {
+        currentUser = null;
     }
 
     @Override
     public void registration(User user) throws ServiceException {
+        
     }
 }

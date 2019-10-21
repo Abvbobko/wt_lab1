@@ -13,4 +13,13 @@ public class CSVFlightDAO implements FlightDAO {
     public void deleteFlight(long idBook) {
 
     }
+
+    private void readFlightsFromFile() {
+        //формат логин пароль билеты
+
+    }
+
+    private void writeFlightsToFile(){
+
+    }
 }

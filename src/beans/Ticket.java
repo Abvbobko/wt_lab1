@@ -2,7 +2,9 @@ package beans;
 
 import com.sun.org.apache.xpath.internal.operations.Equals;
 
-public class Ticket {
+import java.io.Serializable;
+
+public class Ticket implements Serializable {
 
    // private int price;
     private Flight flight;

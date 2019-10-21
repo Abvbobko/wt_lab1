@@ -5,7 +5,7 @@ import beans.User;
 public final class Controller {
 
     private final CommandProvider provider = new CommandProvider();
-    private User currentUser = null;
+  //  private User currentUser = null;
 
     private final char paramDelimeter = ' ';
 

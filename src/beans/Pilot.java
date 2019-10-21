@@ -1,6 +1,8 @@
 package beans;
 
-public class Pilot {
+import java.io.Serializable;
+
+public class Pilot implements Serializable {
     private String name;
     private String surname;
     private String middleName;
