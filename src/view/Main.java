@@ -8,7 +8,7 @@ import view.impl.ConsoleView;
 public class Main {
     public static void main(String[] args) {
 
-        ConsoleView view = ViewFactory.getInstance().getConsoleView();
+        View view = ViewFactory.getInstance().getConsoleView();
         view.start();
     }
 

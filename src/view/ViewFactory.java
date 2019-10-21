@@ -4,7 +4,7 @@ import view.impl.ConsoleView;
 
 public final class ViewFactory {
     private static final ViewFactory instance = new ViewFactory();
-    private final ConsoleView consoleView = new ConsoleView();
+    private final View consoleView = new ConsoleView();
 
     private ViewFactory(){}
 
@@ -13,7 +13,7 @@ public final class ViewFactory {
     }
 
 
-    public ConsoleView getConsoleView(){
+    public View getConsoleView(){
         return consoleView;
     }
 }
