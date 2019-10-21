@@ -7,7 +7,7 @@ public final class Controller {
     private final CommandProvider provider = new CommandProvider();
   //  private User currentUser = null;
 
-    private final char paramDelimeter = ' ';
+  //  private final char paramDelimeter = ' ';
 
     public String executeTask(int commandNumber, String request){
     //    String commandName;
@@ -19,6 +19,11 @@ public final class Controller {
         String response;
         response = executionCommand.execute(request);
         return response;
+    }
+
+    public String getCommandArguments(int commandNumber){
+        CommandName commandName = CommandName.getValueFromID(commandNumber);
+        return ((ConsoleCommand)provider.getCommand(commandName)).getParametersInfo();
     }
 
     public int getNumberOfCommands() {

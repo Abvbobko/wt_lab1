@@ -42,6 +42,6 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void registration(User user) throws ServiceException {
-        
+
     }
 }

@@ -22,7 +22,6 @@ public class ConsoleView implements View {
         System.out.println("Please, choose command:");
 
         //ToDO: получить строку введенную пользователем, получить из нее аргументы и команду и передать в контроллер
-        //CommandName command = CommandName.HELP;
         int commandNumber = CommandName.HELP.getID();
         Scanner in = new Scanner(System.in);
         while (commandNumber != CommandName.EXIT.getID()) {
@@ -34,6 +33,17 @@ public class ConsoleView implements View {
 
                 if (commandNumber > CommandName.values().length){
                     commandNumber = CommandName.HELP.getID();
+                }
+                else {
+                    String parameters = controller.getCommandArguments(commandNumber);
+                    if (!parameters.equals("")) {
+                        System.out.println("Please, enter this parameters by spaces: \n" + parameters);
+                        parameters = in.nextLine();
+                    }
+                    else {
+                        parameters = "";
+                    }
+                    controller.executeTask(commandNumber, parameters);
                 }
 
             }

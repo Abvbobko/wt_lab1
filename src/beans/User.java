@@ -7,7 +7,22 @@ public class User implements Serializable {
     private Ticket[] tickets;
     //boolean administration = false;
     private String login;
+
+    public void setTickets(Ticket[] tickets) {
+        this.tickets = tickets;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
     private String passwordHash;
+
+    public User(){}
 
     public User(String login, String password){
         this.login = login;

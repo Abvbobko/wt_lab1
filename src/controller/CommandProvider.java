@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 final class CommandProvider {
-    private final Map<CommandName, Command> repository = new HashMap<>();
+    private final Map<CommandName, ConsoleCommand> repository = new HashMap<>();
 
     CommandProvider(){
         repository.put(CommandName.SIGN_IN, new SignIn());
@@ -20,7 +20,7 @@ final class CommandProvider {
 
     Command getCommand(CommandName commandName){
 
-        Command command = null;
+        ConsoleCommand command = null;
         try{
             command = repository.get(commandName);
         }catch(IllegalArgumentException | NullPointerException e){

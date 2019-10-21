@@ -1,9 +1,12 @@
 package dao.impl;
 
 import beans.User;
+
+
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import dao.UserDAO;
 
+import javax.xml.stream.XMLStreamReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -42,14 +45,15 @@ public class TextUserDAO implements UserDAO {
 
     private static final String DATA_FILE_NAME = "users.xml";
 
-
+    private final String fileName = "user.xml";
     private void readUsersFromFile() {
         XmlMapper xmlMapper = new XmlMapper();
         try {
             String xmlText = new String(Files.readAllBytes(Paths.get(fileName)));
-            return xmlMapper.readValue(xmlText, Team.class);
+
+            User a = xmlMapper.readValue(xmlText, User.class);
         } catch (IOException e) {
-            throw new XmlOutInException("can't parse file Xml name = [" + fileName + "]", e);
+           // throw new XmlOutInException("can't parse file Xml name = [" + fileName + "]", e);
         }
     }
 
