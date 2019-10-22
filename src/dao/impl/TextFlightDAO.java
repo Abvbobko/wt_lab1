@@ -18,6 +18,8 @@ public class TextFlightDAO implements FlightDAO {
     private static Map<Integer, Flight> flights;
     private Integer lastID = 0;
     private static final String DATA_FILE_NAME = "flights.xml";
+
+
     public Map<Integer, Flight> getFlights(){
         return flights;
     }
@@ -67,6 +69,12 @@ public class TextFlightDAO implements FlightDAO {
 
     private void writeFlightsToFile() throws DAOException {
         try {
+            File f = new File(DATA_FILE_NAME);
+            if (!f.exists()){
+                if (!f.createNewFile()) {
+                    throw new DAOException("File with flights does not found.");
+                }
+            }
             FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
             XMLEncoder encoder = new XMLEncoder(fos);
             encoder.writeObject(flights.values());

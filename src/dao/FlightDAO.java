@@ -3,6 +3,8 @@ package dao;
 import beans.Flight;
 import dao.exception.DAOException;
 
+import java.util.Map;
+
 public interface FlightDAO {
     void addFlight(Flight flight) throws DAOException;
 
@@ -10,6 +12,5 @@ public interface FlightDAO {
 
     void deleteFlight(Integer flightID) throws DAOException;
     //void delete(Book book);
-
 
 }

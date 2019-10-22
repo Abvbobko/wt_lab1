@@ -4,9 +4,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Flight implements Serializable {
     private LocalDate dateOfFlight;
+    private LocalTime departureTime;
+    private LocalTime arrivalTime;
+    private int numberOfFreeSeats;
+    private String fromCity;
+    private String toCity;
+
 
     public void setDateOfFlight(LocalDate dateOfFlight) {
         this.dateOfFlight = dateOfFlight;
@@ -40,50 +48,32 @@ public class Flight implements Serializable {
         this.toCity = toCity;
     }
 
-    public Plane getPlane() {
-        return plane;
-    }
-
-    public void setPlane(Plane plane) {
-        this.plane = plane;
-    }
-
-    private LocalTime departureTime;
-    private LocalTime arrivalTime;
-    private int numberOfFreeSeats;
-    private String fromCity;
-    private String toCity;
-    private Plane plane;
-
     public Flight(String fromCity, String toCity, LocalDate dateOfFlight, LocalTime departure,
                   LocalTime arrival, Plane plane) {
+
         this.fromCity = fromCity;
         this.toCity = toCity;
         this.dateOfFlight = dateOfFlight;
         this.departureTime = departure;
         this.arrivalTime = arrival;
-        this.plane = plane;
         this.numberOfFreeSeats = plane.getNumberOfSeats();
     }
 
     public Flight(String fromCity, String toCity, LocalDate dateOfFlight, LocalTime departure,
-                  LocalTime arrival, Plane plane, int numberOfFreeSeats) {
+                  LocalTime arrival, int numberOfFreeSeats) {
         this.fromCity = fromCity;
         this.toCity = toCity;
         this.dateOfFlight = dateOfFlight;
         this.departureTime = departure;
         this.arrivalTime = arrival;
-        this.plane = plane;
         this.numberOfFreeSeats = numberOfFreeSeats;
     }
 
     public String getDateOfFlight(){
-        // DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd MMM uuuu");
         return DateTimeFormatter.ofPattern("dd MMM uuuu").format(dateOfFlight);
     }
 
     public String getArrivalTime() {
-
         return DateTimeFormatter.ofPattern("HH:mm").format(arrivalTime);
     }
 

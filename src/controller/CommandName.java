@@ -9,7 +9,7 @@ public enum CommandName {
     HELP(0, "Show commands"), SIGN_IN(1, "Sign In"), SIGN_OUT(2, "Sign Out"),
     REGISTRATION(3, "Register"), ADD_FLIGHT(4, "Add flight"),
     BUY_TICKET(5, "Buy ticket"), DELETE_FLIGHT(6, "Delete flight"),
-    UPDATE_FLIGHT(7, "Update flight"), EXIT(8, "Exit");
+    EXIT(7, "Exit");
 
     private final int id;
     private final String name;

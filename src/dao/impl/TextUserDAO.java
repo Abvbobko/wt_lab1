@@ -70,6 +70,12 @@ public class TextUserDAO implements UserDAO {
 
     private void writeUsersToFile() throws DAOException {
         try {
+            File f = new File(DATA_FILE_NAME);
+            if (!f.exists()){
+                if (!f.createNewFile()) {
+                    throw new DAOException("File with users does not found.");
+                }
+            }
             FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
             XMLEncoder encoder = new XMLEncoder(fos);
             encoder.writeObject(users.values());
