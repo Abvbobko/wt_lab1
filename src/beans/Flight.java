@@ -7,6 +7,47 @@ import java.time.format.DateTimeFormatter;
 
 public class Flight implements Serializable {
     private LocalDate dateOfFlight;
+
+    public void setDateOfFlight(LocalDate dateOfFlight) {
+        this.dateOfFlight = dateOfFlight;
+    }
+
+    public void setDepartureTime(LocalTime departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public void setArrivalTime(LocalTime arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public void setNumberOfFreeSeats(int numberOfFreeSeats) {
+        this.numberOfFreeSeats = numberOfFreeSeats;
+    }
+
+    public String getFromCity() {
+        return fromCity;
+    }
+
+    public void setFromCity(String fromCity) {
+        this.fromCity = fromCity;
+    }
+
+    public String getToCity() {
+        return toCity;
+    }
+
+    public void setToCity(String toCity) {
+        this.toCity = toCity;
+    }
+
+    public Plane getPlane() {
+        return plane;
+    }
+
+    public void setPlane(Plane plane) {
+        this.plane = plane;
+    }
+
     private LocalTime departureTime;
     private LocalTime arrivalTime;
     private int numberOfFreeSeats;

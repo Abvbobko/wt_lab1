@@ -2,14 +2,16 @@ package dao.impl;
 
 import beans.User;
 
-
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import dao.UserDAO;
 
 import javax.xml.stream.XMLStreamReader;
-import java.io.IOException;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TextUserDAO implements UserDAO {
@@ -30,13 +32,13 @@ public class TextUserDAO implements UserDAO {
     }
 
     @Override
-    public User registration(String login, String password) {
+    public User registration(String login, String password) throws IOException {
         if (users.get(login) == null){
-
-            // may be return user
             User newUser = new User(login, password);
             users.put(login, newUser);
+            writeUsersToFile();
             return newUser;
+
         }
 
 
@@ -45,20 +47,28 @@ public class TextUserDAO implements UserDAO {
 
     private static final String DATA_FILE_NAME = "users.xml";
 
-    private final String fileName = "user.xml";
-    private void readUsersFromFile() {
-        XmlMapper xmlMapper = new XmlMapper();
-        try {
-            String xmlText = new String(Files.readAllBytes(Paths.get(fileName)));
+   // private final String fileName = "user.xml";
+    private void readUsersFromFile() throws IOException {
 
-            User a = xmlMapper.readValue(xmlText, User.class);
-        } catch (IOException e) {
-           // throw new XmlOutInException("can't parse file Xml name = [" + fileName + "]", e);
+        //ToDO:
+        users = new HashMap<>();
+        FileInputStream fis = new FileInputStream("settings.xml");
+        XMLDecoder decoder = new XMLDecoder(fis);
+        List<User> listOfUsers = (List<User>)decoder.readObject();
+        decoder.close();
+        fis.close();
+        for (User user:
+             listOfUsers) {
+            users.put(user.getLogin(), user);
         }
     }
 
-        private void writeUsersToFile(){
-
+        private void writeUsersToFile() throws IOException {
+            FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
+            XMLEncoder encoder = new XMLEncoder(fos);
+            encoder.writeObject(users.values());
+            encoder.close();
+            fos.close();
         }
 }
 //file format: login password user

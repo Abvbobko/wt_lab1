@@ -7,9 +7,12 @@ import dao.UserDAO;
 import service.ClientService;
 import service.exception.ServiceException;
 
-public class ClientServiceImpl implements ClientService {
-    private User currentUser = null;
 
+//ToDO: сделать тут логику, чтобы БД только можно было получать что то(это я про регистрацию)
+public class ClientServiceImpl implements ClientService {
+
+    private User currentUser = null;
+    private DAOFactory daoObjectFactory = DAOFactory.getInstance();
     @Override
     public boolean singIn(String login, String password) throws ServiceException {
 // проверяем параметры
@@ -20,7 +23,6 @@ public class ClientServiceImpl implements ClientService {
 
         //ToDO: uncomment try
         try{
-            DAOFactory daoObjectFactory = DAOFactory.getInstance();
             UserDAO userDAO = daoObjectFactory.getUserDAO();
             currentUser = userDAO.signIn(login, password);
             if (currentUser != null) {
@@ -41,7 +43,14 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void registration(User user) throws ServiceException {
+    public void registration(String login, String password) throws ServiceException {
+        UserDAO userDAO = daoObjectFactory.getUserDAO();
+        if ((!login.equals("")) && (!password.equals(""))) {
+            userDAO.registration(login, password);
+        }
+    }
+
+    public void buyTucket(){
 
     }
 }
