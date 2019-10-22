@@ -1,5 +1,7 @@
 package service.impl;
 
+import beans.Flight;
+import beans.Ticket;
 import beans.User;
 import dao.exception.DAOException;
 import dao.factory.DAOFactory;
@@ -9,53 +11,44 @@ import service.exception.ServiceException;
 
 import java.io.IOException;
 
-
-//ToDO: сделать тут логику, чтобы БД только можно было получать что то(это я про регистрацию)
 public class ClientServiceImpl implements ClientService {
 
     private User currentUser = null;
     private DAOFactory daoObjectFactory = DAOFactory.getInstance();
 
-
-
     @Override
-    public boolean singIn(String login, String password) throws ServiceException {
-// проверяем параметры
+    public void singIn(String login, String password) throws ServiceException {
         if(login == null || login.isEmpty()){
-            throw new ServiceException("Incorrect login");
+            throw new ServiceException("Error. Incorrect login");
         }
-        // реализуем функционал логинации пользователя в системе
 
-        //ToDO: uncomment try
         try{
             UserDAO userDAO = daoObjectFactory.getUserDAO();
             currentUser = userDAO.signIn(login, password);
-            if (currentUser != null) {
-                return true;
-            }
-
-            //ToDo: похоже на фигню
-            throw new ServiceException("Incorrect login or password");
-
-        } catch(ServiceException e){
-            throw new ServiceException(e);
+            throw new DAOException("Incorrect login or password.");
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public void singOut(String login) throws ServiceException {
+    public void singOut(String login) {
         currentUser = null;
     }
 
     @Override
-    public void registration(String login, String password) throws ServiceException, IOException {
+    public void registration(String login, String password) throws ServiceException {
         UserDAO userDAO = daoObjectFactory.getUserDAO();
         if ((!login.equals("")) && (!password.equals(""))) {
-            userDAO.registration(login, password);
+            try {
+                userDAO.registration(login, password);
+            } catch (IOException | DAOException e) {
+                throw new ServiceException(e.getMessage());
+            }
         }
     }
 
-    public void buyTucket(){
-
+    public void buyTicket(Flight flight){
+        currentUser.addTicket(new Ticket(flight));
     }
 }

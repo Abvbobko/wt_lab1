@@ -29,13 +29,15 @@ public class TextUserDAO implements UserDAO {
 
     }
 
-    // ToDO: сделать бросание ошибки неправильный логин и тоже самое с паролем
     @Override
-    public User signIn(String login, String password) {
-        if (users.get(login).getPasswordHash().equals(String.valueOf(password.hashCode()))){
-            return users.get(login);
+    public User signIn(String login, String password) throws DAOException {
+        if (users.get(login) != null){
+            if (users.get(login).getPasswordHash().equals(String.valueOf(password.hashCode()))){
+                return users.get(login);
+            }
+            throw new DAOException("Error. Incorrect password.");
         }
-        return null;//ToDo: delete this string and throw error
+        throw new DAOException("Error. Incorrect login.");
     }
 
     @Override
@@ -49,12 +51,8 @@ public class TextUserDAO implements UserDAO {
         throw new DAOException("User with this login exists.");
     }
 
-
-
-   // private final String fileName = "user.xml";
     private void readUsersFromFile() throws DAOException {
 
-        //ToDO:
         try {
             users = new HashMap<>();
             FileInputStream fis = new FileInputStream("settings.xml");
@@ -62,8 +60,7 @@ public class TextUserDAO implements UserDAO {
             List<User> listOfUsers = (List<User>)decoder.readObject();
             decoder.close();
             fis.close();
-            for (User user:
-                 listOfUsers) {
+            for (User user: listOfUsers) {
                 users.put(user.getLogin(), user);
             }
         } catch (IOException e) {

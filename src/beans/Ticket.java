@@ -8,17 +8,12 @@ public class Ticket implements Serializable {
 
    // private int price;
     private Flight flight;
-    private ServiceClass serviceClass;
     private int place;
 
-    public Ticket(){}
-
+    public Ticket(Flight flight ){
+        this.flight = flight;
 //    public int getPrice(){
 //        return this.price;
-//    }
-
-    public ServiceClass getServiceClass() {
-        return this.serviceClass;
     }
 
     public int getPlace(){

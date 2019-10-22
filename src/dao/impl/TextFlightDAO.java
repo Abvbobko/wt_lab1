@@ -45,7 +45,6 @@ public class TextFlightDAO implements FlightDAO {
         writeFlightsToFile();
     }
 
-
     private void readFlightsFromFile() throws DAOException {
         try {
             flights = new HashMap<>();
@@ -64,7 +63,6 @@ public class TextFlightDAO implements FlightDAO {
         } catch (IOException e) {
             throw new DAOException(e.getMessage());
         }
-
     }
 
     private void writeFlightsToFile() throws DAOException {

@@ -10,6 +10,6 @@ public interface UserDAO {
     // todo: May be add workers of airline(administrations)
 
 
-    User signIn(String login, String password);
+    User signIn(String login, String password) throws DAOException;
     User registration(String login, String password) throws IOException, DAOException;
 }

@@ -7,17 +7,17 @@ import dao.impl.TextUserDAO;
 
 public final class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
-    private final FlightDAO csvFlightImpl = new TextFlightDAO();
-    private final UserDAO csvUserImpl = new TextUserDAO();
+    private final FlightDAO textFlightImpl = new TextFlightDAO();
+    private final UserDAO textUserImpl = new TextUserDAO();
 
     private DAOFactory(){}
     public static DAOFactory getInstance(){
         return instance;
     }
     public FlightDAO getFlightDAO(){
-        return csvFlightImpl;
+        return textFlightImpl;
     }
     public UserDAO getUserDAO(){
-        return csvUserImpl;
+        return textUserImpl;
     }
 }
