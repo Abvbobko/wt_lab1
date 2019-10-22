@@ -18,7 +18,15 @@ public class TextUserDAO implements UserDAO {
 
 
     private static Map<String, User> users;
+    private static final String DATA_FILE_NAME = "users.xml";
 
+    public TextUserDAO(){
+
+            if (new File(DATA_FILE_NAME).exists()) {
+                readUsersFromFile();
+            }
+
+    }
 
     // ToDO: сделать бросание ошибки неправильный логин и тоже самое с паролем
     @Override
@@ -45,31 +53,40 @@ public class TextUserDAO implements UserDAO {
         return new User("",""); // ToDo: It's temp. Throw the error
     }
 
-    private static final String DATA_FILE_NAME = "users.xml";
+
 
    // private final String fileName = "user.xml";
-    private void readUsersFromFile() throws IOException {
+    private void readUsersFromFile() {
 
         //ToDO:
-        users = new HashMap<>();
-        FileInputStream fis = new FileInputStream("settings.xml");
-        XMLDecoder decoder = new XMLDecoder(fis);
-        List<User> listOfUsers = (List<User>)decoder.readObject();
-        decoder.close();
-        fis.close();
-        for (User user:
-             listOfUsers) {
-            users.put(user.getLogin(), user);
+        try {
+            users = new HashMap<>();
+            FileInputStream fis = new FileInputStream("settings.xml");
+            XMLDecoder decoder = new XMLDecoder(fis);
+            List<User> listOfUsers = (List<User>)decoder.readObject();
+            decoder.close();
+            fis.close();
+            for (User user:
+                 listOfUsers) {
+                users.put(user.getLogin(), user);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-        private void writeUsersToFile() throws IOException {
+    private void writeUsersToFile() {
+        try {
             FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
             XMLEncoder encoder = new XMLEncoder(fos);
             encoder.writeObject(users.values());
             encoder.close();
             fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
 }
 //file format: login password user
 

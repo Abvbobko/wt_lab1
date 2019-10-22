@@ -2,13 +2,13 @@ package dao.factory;
 
 import dao.FlightDAO;
 import dao.UserDAO;
-import dao.impl.CSVFlightDAO;
-import dao.impl.CSVUserDAO;
+import dao.impl.TextFlightDAO;
+import dao.impl.TextUserDAO;
 
 public final class DAOFactory {
     private static final DAOFactory instance = new DAOFactory();
-    private final FlightDAO csvFlightImpl = new CSVFlightDAO();
-    private final UserDAO csvUserImpl = new CSVUserDAO();
+    private final FlightDAO csvFlightImpl = new TextFlightDAO();
+    private final UserDAO csvUserImpl = new TextUserDAO();
 
     private DAOFactory(){}
     public static DAOFactory getInstance(){
