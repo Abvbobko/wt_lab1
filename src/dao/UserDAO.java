@@ -1,6 +1,7 @@
 package dao;
 
 import beans.User;
+import dao.exception.DAOException;
 
 import java.io.IOException;
 
@@ -10,5 +11,5 @@ public interface UserDAO {
 
 
     User signIn(String login, String password);
-    User registration(String login, String password) throws IOException;
+    User registration(String login, String password) throws IOException, DAOException;
 }

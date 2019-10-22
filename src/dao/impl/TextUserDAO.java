@@ -3,28 +3,29 @@ package dao.impl;
 import beans.User;
 
 import dao.UserDAO;
+import dao.exception.DAOException;
 
-import javax.xml.stream.XMLStreamReader;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TextUserDAO implements UserDAO {
 
-
     private static Map<String, User> users;
     private static final String DATA_FILE_NAME = "users.xml";
 
     public TextUserDAO(){
 
-            if (new File(DATA_FILE_NAME).exists()) {
+        if (new File(DATA_FILE_NAME).exists()) {
+            try {
                 readUsersFromFile();
+            } catch (DAOException e) {
+                e.printStackTrace();
             }
+        }
 
     }
 
@@ -34,29 +35,24 @@ public class TextUserDAO implements UserDAO {
         if (users.get(login).getPasswordHash().equals(String.valueOf(password.hashCode()))){
             return users.get(login);
         }
-        //// именно в этом методы мы связываемся с базой данных и проверяем
-        //корректность логина и пароля
-        return null;//new User("",""); //ToDo: delete this string and throw error
+        return null;//ToDo: delete this string and throw error
     }
 
     @Override
-    public User registration(String login, String password) throws IOException {
+    public User registration(String login, String password) throws DAOException {
         if (users.get(login) == null){
             User newUser = new User(login, password);
             users.put(login, newUser);
             writeUsersToFile();
             return newUser;
-
         }
-
-
-        return new User("",""); // ToDo: It's temp. Throw the error
+        throw new DAOException("User with this login exists.");
     }
 
 
 
    // private final String fileName = "user.xml";
-    private void readUsersFromFile() {
+    private void readUsersFromFile() throws DAOException {
 
         //ToDO:
         try {
@@ -71,11 +67,11 @@ public class TextUserDAO implements UserDAO {
                 users.put(user.getLogin(), user);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new DAOException(e.getMessage());
         }
     }
 
-    private void writeUsersToFile() {
+    private void writeUsersToFile() throws DAOException {
         try {
             FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
             XMLEncoder encoder = new XMLEncoder(fos);
@@ -83,10 +79,10 @@ public class TextUserDAO implements UserDAO {
             encoder.close();
             fos.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new DAOException(e.getMessage());
         }
     }
 
 }
-//file format: login password user
+
 

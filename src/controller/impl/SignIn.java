@@ -37,7 +37,7 @@ public class SignIn implements ConsoleCommand {
 
     @Override
     public String getParametersInfo() {
-        return "Enter login and password by space.";
+        return "login, password";
     }
 
 
