@@ -8,22 +8,28 @@ import java.util.Map;
 
 public class Commands{
     public enum CommandName {
-        HELP("Show commands"),
-        SIGN_IN("Sign In"),
-        SIGN_OUT("Sign Out"),
-        REGISTRATION("Register"),
-        ADD_FLIGHT("Add flight"),
-        BUY_TICKET("Buy ticket"),
-        EXIT("Exit");
+        HELP("Show commands", true),
+        SIGN_IN("Sign In", true),
+        SIGN_OUT("Sign Out", true),
+        REGISTRATION("Register", true),
+        ADD_FLIGHT("Add flight", false),
+        BUY_TICKET("Buy ticket", true),
+        EXIT("Exit", true);
 
         private final String name;
+        private final boolean forOrdinaryUser;
 
-        CommandName(String name) {
+        CommandName(String name, Boolean forOrdinaryUser) {
             this.name = name;
+            this.forOrdinaryUser = forOrdinaryUser;
         }
 
         public String getName() {
             return name;
+        }
+
+        public boolean isForOrdinaryUser(){
+            return this.forOrdinaryUser;
         }
 
     }

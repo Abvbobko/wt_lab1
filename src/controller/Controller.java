@@ -1,8 +1,13 @@
 package controller;
 
 import beans.User;
+import service.ClientService;
+import service.factory.ServiceFactory;
 
 public final class Controller {
+
+    ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    ClientService clientService = serviceFactory.getClientService();
 
     private final CommandProvider provider = new CommandProvider();
   //  private User currentUser = null;
@@ -34,4 +39,7 @@ public final class Controller {
         return Commands.CommandName.values();
     }
 
+    public boolean isAdminMode(){
+        return clientService.isAdminMode();
+    }
 }

@@ -22,15 +22,13 @@ public class SignIn implements ConsoleCommand {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getClientService();
         try {
-            if (clientService.singIn(login, password)) {
-                response = "Welcome";
-            }
-            else {
-                throw new ServiceException();
-            }
+            clientService.singIn(login, password);
+            response = "Welcome";
+
         } catch (ServiceException e) {
             // write log
-            response = "Error during login procedure";
+
+            response = e.getMessage();
         }
         return response;
     }

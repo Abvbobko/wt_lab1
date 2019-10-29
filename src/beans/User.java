@@ -5,19 +5,11 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private Ticket[] tickets;
-    //boolean administration = false;
+    boolean admin = false;
     private String login;
 
-    public void setTickets(Ticket[] tickets) {
-        this.tickets = tickets;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public boolean isAdmin(){
+        return admin;
     }
 
     private String passwordHash;

@@ -16,6 +16,10 @@ public class ClientServiceImpl implements ClientService {
     private User currentUser = null;
     private DAOFactory daoObjectFactory = DAOFactory.getInstance();
 
+    public boolean isAdminMode(){
+        return currentUser.isAdmin();
+    }
+
     @Override
     public void singIn(String login, String password) throws ServiceException {
         if(login == null || login.isEmpty()){

@@ -13,7 +13,12 @@ public class ConsoleView implements View {
     private void showListOfCommands(){
         Commands.CommandName[] commands = controller.getListOfCommands();
         for (Commands.CommandName command: commands) {
-            System.out.println(String.format("%d. %s;", Commands.getID(command), command.getName()));
+            if (command.isForOrdinaryUser() && !controller.isAdminMode()){
+                System.out.println(String.format("%d. %s;", Commands.getID(command), command.getName()));
+            }
+            else if (controller.isAdminMode()){
+                System.out.println(String.format("%d. %s;", Commands.getID(command), command.getName()));
+            }
         }
     }
 
@@ -21,9 +26,9 @@ public class ConsoleView implements View {
         System.out.println("Welcome to our airline.");
         System.out.println("Please, choose command:");
 
-        //ToDO: получить строку введенную пользователем, получить из нее аргументы и команду и передать в контроллер
         int commandNumber = Commands.getID(Commands.CommandName.HELP);
         Scanner in = new Scanner(System.in);
+
         while (Commands.getValueFromID(commandNumber) != Commands.CommandName.EXIT) {
             if (commandNumber == Commands.getID(Commands.CommandName.HELP)) {
                 showListOfCommands();
