@@ -3,6 +3,7 @@ package controller;
 import controller.impl.AddFlight;
 import controller.impl.Register;
 import controller.impl.SignIn;
+import controller.impl.SignOut;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ final class CommandProvider {
         repository.put(Commands.CommandName.SIGN_IN, new SignIn());
         repository.put(Commands.CommandName.REGISTRATION, new Register());
         repository.put(Commands.CommandName.ADD_FLIGHT, new AddFlight());
+        repository.put(Commands.CommandName.SIGN_OUT, new SignOut());
         //repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
 
     }

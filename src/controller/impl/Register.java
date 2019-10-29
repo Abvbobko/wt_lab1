@@ -25,7 +25,7 @@ public class Register implements ConsoleCommand {
             clientService.registration(login, password);
             response = "Success";
 
-        } catch (ServiceException | IOException | DAOException e) {
+        } catch (ServiceException e) {
             // write log
             response = e.getMessage();
         }

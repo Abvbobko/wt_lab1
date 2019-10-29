@@ -5,5 +5,5 @@ import service.exception.ServiceException;
 
 public interface FlightService {
 
-    void addNewFlight(Object[] flightAttributes) throws ServiceException;
+    void addFlight(Object[] flightAttributes) throws ServiceException;
 }

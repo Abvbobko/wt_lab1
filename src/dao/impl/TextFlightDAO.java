@@ -10,18 +10,29 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class TextFlightDAO implements FlightDAO {
-    private static Map<Integer, Flight> flights;
-    private Integer lastID = 0;
+    //private static Map<Integer, Flight> flights;
+    //private Integer lastID = 0;
+    private List<Flight> flights;
     private static final String DATA_FILE_NAME = "flights.xml";
 
 
-    public Map<Integer, Flight> getFlights(){
-        return flights;
+    //private Map<Integer, Flight> getFlights(){
+  //      return flights;
+   // }
+    public Flight getFlightByID(int id){
+        if ((id >= 0) && (id < flights.size())){
+            return flights.get(id);
+        }
+        return null;
+    }
+
+    public int getFlightsNumber(){
+
+        return flights.size();
     }
 
     public TextFlightDAO(){
@@ -36,32 +47,34 @@ public class TextFlightDAO implements FlightDAO {
 
     @Override
     public void addFlight(Flight flight) throws DAOException {
-        lastID++;
-        flights.put(lastID, flight);
+      //  lastID++;
+       // flights.put(lastID, flight);
+        flights.add(flight);
         writeFlightsToFile();
     }
 
     @Override
     public void deleteFlight(Integer flightID) throws DAOException {
-        flights.remove(flightID);
+       // flights.remove(flightID);
+        flights.remove((int)flightID);
         writeFlightsToFile();
     }
 
     private void readFlightsFromFile() throws DAOException {
         try {
-            flights = new HashMap<>();
+            flights = new ArrayList<>();
             FileInputStream fis = new FileInputStream("settings.xml");
             XMLDecoder decoder = new XMLDecoder(fis);
-            List<Flight> listOfUsers = (List<Flight>)decoder.readObject();
+            List<Flight> listOfFlights = (ArrayList<Flight>)decoder.readObject();
             decoder.close();
             fis.close();
-            int i = 0;
+            /*int i = 0;
             for (Flight user:
                     listOfUsers) {
 
                 flights.put(i, user);
                 i++;
-            }
+            }*/
         } catch (IOException e) {
             throw new DAOException(e.getMessage());
         }
@@ -77,7 +90,7 @@ public class TextFlightDAO implements FlightDAO {
             }
             FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
             XMLEncoder encoder = new XMLEncoder(fos);
-            encoder.writeObject(flights.values());
+            encoder.writeObject(flights);
             encoder.close();
             fos.close();
         } catch (IOException e) {

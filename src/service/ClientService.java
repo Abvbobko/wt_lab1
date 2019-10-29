@@ -11,4 +11,5 @@ public interface ClientService {
     void singIn(String login, String password) throws ServiceException;
     void singOut() throws ServiceException;
     void registration(String login, String password) throws ServiceException;
+    void butTicket(int flightID) throws ServiceException;
 }

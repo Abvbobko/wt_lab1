@@ -3,6 +3,7 @@ package service.impl;
 import beans.Flight;
 import beans.Ticket;
 import beans.User;
+import dao.FlightDAO;
 import dao.exception.DAOException;
 import dao.factory.DAOFactory;
 import dao.UserDAO;
@@ -55,11 +56,19 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public void butTicket(int flightID) throws ServiceException {
+        FlightDAO flightDAO = daoObjectFactory.getFlightDAO();
+        if ((flightID >= 0) && (flightID < flightDAO.getFlightsNumber())) {
+            currentUser.addTicket(new Ticket(flightDAO.getFlightByID(flightID)));
+            return;
+        }
+        throw new ServiceException("Incorrect flight index.");
+    }
+
+    @Override
     public void singOut() {
         currentUser = null;
     }
 
-    public void buyTicket(Flight flight){
-        currentUser.addTicket(new Ticket(flight));
-    }
+
 }

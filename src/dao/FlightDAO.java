@@ -11,6 +11,8 @@ public interface FlightDAO {
     // ToDO: Realise adding of Flight, add deleting flight, download flights from files
 
     void deleteFlight(Integer flightID) throws DAOException;
+    int getFlightsNumber();
+    Flight getFlightByID(int flightID);
     //void delete(Book book);
 
 }
