@@ -11,7 +11,7 @@ public final class Controller {
 
     public String executeTask(int commandNumber, String request){
     //    String commandName;
-        CommandName commandName = CommandName.getValueFromID(commandNumber);
+        Commands.CommandName commandName = Commands.getValueFromID(commandNumber);
         Command executionCommand;
         //request.substring(0, request.indexOf(paramDelimeter));
 
@@ -22,16 +22,16 @@ public final class Controller {
     }
 
     public String getCommandArguments(int commandNumber){
-        CommandName commandName = CommandName.getValueFromID(commandNumber);
+        Commands.CommandName commandName = Commands.getValueFromID(commandNumber);
         return ((ConsoleCommand)provider.getCommand(commandName)).getParametersInfo();
     }
 
     public int getNumberOfCommands() {
-        return CommandName.values().length;
+        return Commands.CommandName.values().length;
     }
 
-    public CommandName[] getListOfCommands() {
-        return CommandName.values();
+    public Commands.CommandName[] getListOfCommands() {
+        return Commands.CommandName.values();
     }
 
 }

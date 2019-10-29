@@ -1,6 +1,6 @@
 package view.impl;
 
-import controller.CommandName;
+import controller.Commands;
 import controller.Controller;
 import view.View;
 
@@ -11,9 +11,9 @@ public class ConsoleView implements View {
     private Controller controller = new Controller();
 
     private void showListOfCommands(){
-        CommandName[] commands = controller.getListOfCommands();
-        for (CommandName command: commands) {
-            System.out.println(String.format("%d. %s;", command.getID(), command.getName()));
+        Commands.CommandName[] commands = controller.getListOfCommands();
+        for (Commands.CommandName command: commands) {
+            System.out.println(String.format("%d. %s;", Commands.getID(command), command.getName()));
         }
     }
 
@@ -22,17 +22,17 @@ public class ConsoleView implements View {
         System.out.println("Please, choose command:");
 
         //ToDO: получить строку введенную пользователем, получить из нее аргументы и команду и передать в контроллер
-        int commandNumber = CommandName.HELP.getID();
+        int commandNumber = Commands.getID(Commands.CommandName.HELP);
         Scanner in = new Scanner(System.in);
-        while (commandNumber != CommandName.EXIT.getID()) {
-            if (commandNumber == CommandName.HELP.getID()) {
+        while (Commands.getValueFromID(commandNumber) != Commands.CommandName.EXIT) {
+            if (commandNumber == Commands.getID(Commands.CommandName.HELP)) {
                 showListOfCommands();
             }
             try {
                 commandNumber = in.nextInt();
 
-                if (commandNumber > CommandName.values().length){
-                    commandNumber = CommandName.HELP.getID();
+                if (commandNumber > Commands.CommandName.values().length){
+                    commandNumber = Commands.getID(Commands.CommandName.HELP);
                 }
                 else {
                     String parameters = controller.getCommandArguments(commandNumber);
