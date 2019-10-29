@@ -17,19 +17,13 @@ public class FlightServiceImpl implements FlightService {
     private DAOFactory daoFactory = DAOFactory.getInstance();
     private FlightDAO flightDAO = daoFactory.getFlightDAO();
 
-
-   /* public String getFlightsID(){
-
-        return "";
-    }*/
-
     @Override
     public void addFlight(Object[] flightAttributes) throws ServiceException {
         try {
             flightDAO.addFlight(new Flight(
                     (String)flightAttributes[0], (String)flightAttributes[1],
                     (LocalDate)flightAttributes[2], (LocalTime)flightAttributes[3],
-                    (LocalTime)flightAttributes[4], (int)flightAttributes[5]
+                    (LocalTime)flightAttributes[4]/*, (int)flightAttributes[5]*/
             ));
         } catch (DAOException | ArrayIndexOutOfBoundsException e) {
             throw new ServiceException(e.getMessage());
