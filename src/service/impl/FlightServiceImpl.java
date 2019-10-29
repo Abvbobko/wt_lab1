@@ -38,16 +38,6 @@ public class FlightServiceImpl implements FlightService {
         }
     }
 
-    public void deleteFlight(Integer flightID) throws ServiceException {
-        try {
-            flightDAO.deleteFlight(flightID);
-        } catch (DAOException e) {
-            throw new ServiceException(e.getMessage());
-        }
-    }
-
-
-
     //ToDO: !!! Каждый открытый метод реализации слоя сервисов имеет обязанность
     //проверять входящие параметры (кто бы и где бы до него это не делал)!
 }

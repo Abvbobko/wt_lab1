@@ -1,46 +1,50 @@
 package controller;
 
+import javafx.util.Pair;
 import view.impl.ConsoleView;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public enum CommandName {
-    HELP(0, "Show commands"), SIGN_IN(1, "Sign In"), SIGN_OUT(2, "Sign Out"),
-    REGISTRATION(3, "Register"), ADD_FLIGHT(4, "Add flight"),
-    BUY_TICKET(5, "Buy ticket"), DELETE_FLIGHT(6, "Delete flight"),
-    EXIT(7, "Exit");
+public class CommandName{
+    private enum Commands {
+        HELP("Show commands"),
+        SIGN_IN("Sign In"),
+        SIGN_OUT("Sign Out"),
+        REGISTRATION("Register"),
+        ADD_FLIGHT("Add flight"),
+        BUY_TICKET("Buy ticket"),
+        EXIT("Exit");
 
-    private final int id;
-    private final String name;
+        private final String name;
 
-    private static final Map<Integer, CommandName> commandsID = new HashMap<>();
-    //private static int[] commandsID;
+        Commands(String name) {
+            this.name = name;
+        }
 
-    static {
-        for (CommandName commandName: CommandName.values()) {
-            commandsID.put(commandName.id, commandName);
+        public String getName() {
+            return name;
+        }
+
+    }
+
+    private static final Map<Integer, Commands> commands = new HashMap<>();
+    private static final CommandName instance = new CommandName();
+
+    private CommandName(){
+        int i = 0;
+        for (Commands command:
+             Commands.values()) {
+            commands.put(i++, command);
         }
     }
 
-    CommandName(int id, String name) {
-       // if (id == ConsoleView.HELP_COMMAND_NUMBER) {
-        //    throw new Exception();
-        //}*/ // ToDo: Сделать чтобы нельзя == 0
-        this.id = id;
-        //commandsID.put(id, this);
-        this.name = name;
+    public static Commands getValueFromID(int id){
+        return commands.get(id);
     }
 
-    public int getID() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public static CommandName getValueFromID(int id){
-        return commandsID.get(id);
+    public static CommandName getInstance(){
+        return instance;
     }
 }
+
