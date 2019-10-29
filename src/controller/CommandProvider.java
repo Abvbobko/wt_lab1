@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 final class CommandProvider {
+
     private final Map<Commands.CommandName, ConsoleCommand> repository = new HashMap<>();
 
     CommandProvider(){

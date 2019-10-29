@@ -1,8 +1,5 @@
 package controller;
 
-import javafx.util.Pair;
-import view.impl.ConsoleView;
-
 import java.util.HashMap;
 import java.util.Map;
 

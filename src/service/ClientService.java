@@ -9,6 +9,6 @@ import java.io.IOException;
 public interface ClientService {
     boolean isAdminMode();
     void singIn(String login, String password) throws ServiceException;
-    void singOut(String login) throws ServiceException;
-    void registration(String login, String password) throws ServiceException, IOException, DAOException;
+    void singOut() throws ServiceException;
+    void registration(String login, String password) throws ServiceException;
 }

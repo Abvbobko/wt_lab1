@@ -12,11 +12,9 @@ public class ConsoleView implements View {
 
     private void showListOfCommands(){
         Commands.CommandName[] commands = controller.getListOfCommands();
+        boolean isAdminMode = controller.isAdminMode();
         for (Commands.CommandName command: commands) {
-            if (command.isForOrdinaryUser() && !controller.isAdminMode()){
-                System.out.println(String.format("%d. %s;", Commands.getID(command), command.getName()));
-            }
-            else if (controller.isAdminMode()){
+            if ((isAdminMode) || (command.isForOrdinaryUser())){
                 System.out.println(String.format("%d. %s;", Commands.getID(command), command.getName()));
             }
         }
@@ -30,9 +28,11 @@ public class ConsoleView implements View {
         Scanner in = new Scanner(System.in);
 
         while (Commands.getValueFromID(commandNumber) != Commands.CommandName.EXIT) {
+
             if (commandNumber == Commands.getID(Commands.CommandName.HELP)) {
                 showListOfCommands();
             }
+
             try {
                 commandNumber = in.nextInt();
 
@@ -48,7 +48,7 @@ public class ConsoleView implements View {
                     else {
                         parameters = "";
                     }
-                    controller.executeTask(commandNumber, parameters);
+                    System.out.println(controller.executeTask(commandNumber, parameters));
                 }
 
             }

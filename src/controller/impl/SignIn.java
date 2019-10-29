@@ -9,25 +9,24 @@ public class SignIn implements ConsoleCommand {
 
     @Override
     public String execute(String request) {
-        String login = null;
-        String password = null;
-        String response = null;
+        String login;
+        String password;
+        String response;
 
         String delimiters = "[ ]+";
 
-        //ToDo: check that request has two args
-        login = request.split(delimiters)[0];
-        password = request.split(delimiters)[1];
-
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getClientService();
+
         try {
+            login = request.split(delimiters)[0];
+            password = request.split(delimiters)[1];
+
             clientService.singIn(login, password);
             response = "Welcome";
 
         } catch (ServiceException e) {
             // write log
-
             response = e.getMessage();
         }
         return response;
