@@ -12,22 +12,20 @@ public class Ticket implements Serializable {
 
     public Ticket(Flight flight ){
         this.flight = flight;
-//    public int getPrice(){
-//        return this.price;
     }
 
     public int getPlace(){
         return place;
     }
 
-    public void saveTicketToFile(){
+   /* public void saveTicketToFile(){
      // TODO: add saving to file
-    }
+    }*/
 
 
     @Override
     public String toString(){
-        return "";
+        return flight.toString() + "\n Place: " + place;
         // ToDo: Add string form for ticket
         // create pic of ticket
     }

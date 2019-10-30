@@ -29,6 +29,7 @@ public class SignIn implements ConsoleCommand {
             // write log
             response = e.getMessage();
         }
+
         return response;
     }
 

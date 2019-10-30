@@ -18,6 +18,9 @@ public class ClientServiceImpl implements ClientService {
     private DAOFactory daoObjectFactory = DAOFactory.getInstance();
 
     public boolean isAdminMode(){
+        if (currentUser == null) {
+            return false;
+        }
         return currentUser.isAdmin();
     }
 
@@ -30,6 +33,7 @@ public class ClientServiceImpl implements ClientService {
         try{
             UserDAO userDAO = daoObjectFactory.getUserDAO();
             currentUser = userDAO.signIn(login, password);
+
             //throw new DAOException("Incorrect login or password.");
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());

@@ -8,13 +8,14 @@ import dao.exception.DAOException;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TextUserDAO implements UserDAO {
 
-    private static Map<String, User> users;
+    private static Map<String, User> users = new HashMap<>();
     private static final String DATA_FILE_NAME = "users.xml";
 
     public TextUserDAO(){
@@ -31,13 +32,19 @@ public class TextUserDAO implements UserDAO {
 
     @Override
     public User signIn(String login, String password) throws DAOException {
-        if (users.get(login) != null){
-            if (users.get(login).getPasswordHash().equals(String.valueOf(password.hashCode()))){
-                return users.get(login);
+     //   try{
+            if (users.get(login) != null){
+                if (users.get(login).getPasswordHash().equals(String.valueOf(password.hashCode()))){
+                    return users.get(login);
+                }
+                throw new DAOException("Error. Incorrect password.");
             }
-            throw new DAOException("Error. Incorrect password.");
-        }
-        throw new DAOException("Error. Incorrect login.");
+            throw new DAOException("Error. Incorrect login.");
+//        }
+//            catch(Exception e){
+//                throw new DAOException("Error. Incorrect login.");
+//            }
+
     }
 
     @Override
@@ -78,7 +85,11 @@ public class TextUserDAO implements UserDAO {
             }
             FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
             XMLEncoder encoder = new XMLEncoder(fos);
-            encoder.writeObject(users.values());
+
+            ArrayList<User> us = new ArrayList<>(users.values());
+
+            encoder.writeObject(us);
+
             encoder.close();
             fos.close();
         } catch (IOException e) {

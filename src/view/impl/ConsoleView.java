@@ -33,28 +33,34 @@ public class ConsoleView implements View {
                 showListOfCommands();
             }
 
-            try {
-                commandNumber = in.nextInt();
+           // try {
+                String input = in.nextLine();
+                commandNumber = Integer.parseInt(input);
 
                 if (commandNumber > Commands.CommandName.values().length){
                     commandNumber = Commands.getID(Commands.CommandName.HELP);
                 }
-                else {
+                else if ((Commands.getValueFromID(commandNumber) != Commands.CommandName.HELP)
+                        &&(Commands.getValueFromID(commandNumber) != Commands.CommandName.EXIT)){
+
                     String parameters = controller.getCommandArguments(commandNumber);
                     if (!parameters.equals("")) {
-                        System.out.println("Please, enter this parameters by spaces: \n" + parameters);
+                        System.out.println("Please, enter this parameters by spaces: " + parameters);
+
                         parameters = in.nextLine();
                     }
                     else {
                         parameters = "";
                     }
+
                     System.out.println(controller.executeTask(commandNumber, parameters));
+
                 }
 
-            }
-            catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+         //   }
+          //  catch (RuntimeException e) {
+           //     System.out.println(e.getMessage());
+           // }
 
         }
     }

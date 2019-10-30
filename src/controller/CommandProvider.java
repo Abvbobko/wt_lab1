@@ -18,6 +18,8 @@ final class CommandProvider {
         repository.put(Commands.CommandName.REGISTRATION, new Register());
         repository.put(Commands.CommandName.ADD_FLIGHT, new AddFlight());
         repository.put(Commands.CommandName.SIGN_OUT, new SignOut());
+      //  repository.put(Commands.CommandName.HELP, new Help());
+      //  repository.put(Commands.CommandName.EXIT, new Exit());
         //repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
 
     }

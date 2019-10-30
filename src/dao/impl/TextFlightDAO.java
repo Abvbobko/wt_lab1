@@ -65,16 +65,10 @@ public class TextFlightDAO implements FlightDAO {
             flights = new ArrayList<>();
             FileInputStream fis = new FileInputStream("settings.xml");
             XMLDecoder decoder = new XMLDecoder(fis);
-            List<Flight> listOfFlights = (ArrayList<Flight>)decoder.readObject();
+            flights = (ArrayList<Flight>)decoder.readObject();
             decoder.close();
             fis.close();
-            /*int i = 0;
-            for (Flight user:
-                    listOfUsers) {
-
-                flights.put(i, user);
-                i++;
-            }*/
+      
         } catch (IOException e) {
             throw new DAOException(e.getMessage());
         }
