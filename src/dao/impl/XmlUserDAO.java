@@ -13,12 +13,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TextUserDAO implements UserDAO {
+public class XmlUserDAO implements UserDAO {
 
     private static Map<String, User> users = new HashMap<>();
     private static final String DATA_FILE_NAME = "users.xml";
 
-    public TextUserDAO(){
+    public XmlUserDAO(){
 
         if (new File(DATA_FILE_NAME).exists()) {
             try {
@@ -62,7 +62,7 @@ public class TextUserDAO implements UserDAO {
 
         try {
             users = new HashMap<>();
-            FileInputStream fis = new FileInputStream("settings.xml");
+            FileInputStream fis = new FileInputStream(DATA_FILE_NAME);
             XMLDecoder decoder = new XMLDecoder(fis);
             List<User> listOfUsers = (List<User>)decoder.readObject();
             decoder.close();

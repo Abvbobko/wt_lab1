@@ -1,10 +1,12 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Serializable {
 
-    private Ticket[] tickets;
+    private List<Ticket> tickets = new ArrayList<>();
     private boolean admin = false;
     private String login;
 
@@ -12,7 +14,19 @@ public class User implements Serializable {
         return admin;
     }
 
-    public void setTickets(Ticket[] tickets) {
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
     }
 
@@ -25,7 +39,7 @@ public class User implements Serializable {
         this.passwordHash = String.valueOf(password.hashCode());
     }
 
-    public User(String login, String password, Ticket[] tickets){
+    public User(String login, String password, List<Ticket> tickets){
         this.tickets = tickets;
         this.login = login;
         this.passwordHash = String.valueOf(password.hashCode());
@@ -35,11 +49,7 @@ public class User implements Serializable {
 
     }
 
-/*    public void removeTicket(){
-
-    }*/
-
-    public Ticket[] getTickets() {
+    public List<Ticket> getTickets() {
         return tickets;
     }
 

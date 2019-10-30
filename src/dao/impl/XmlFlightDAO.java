@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextFlightDAO implements FlightDAO {
+public class XmlFlightDAO implements FlightDAO {
     //private static Map<Integer, Flight> flights;
     //private Integer lastID = 0;
     private List<Flight> flights;
@@ -35,7 +35,7 @@ public class TextFlightDAO implements FlightDAO {
         return flights.size();
     }
 
-    public TextFlightDAO(){
+    public XmlFlightDAO(){
         if (new File(DATA_FILE_NAME).exists()) {
             try {
                 readFlightsFromFile();
