@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +67,16 @@ public class XmlFlightDAO implements FlightDAO {
             FileInputStream fis = new FileInputStream(DATA_FILE_NAME);
             XMLDecoder decoder = new XMLDecoder(fis);
             flights = (ArrayList<Flight>)decoder.readObject();
+            int firstFlightsCnt = flights.size();
+            for (Flight flight:
+                 flights) {
+                if (LocalDate.now().compareTo(flight.getDateOfFlight()) > 0){
+                    flights.remove(flight);
+                }
+            }
+            if (firstFlightsCnt > flights.size()){
+                writeFlightsToFile();
+            }
             decoder.close();
             fis.close();
       

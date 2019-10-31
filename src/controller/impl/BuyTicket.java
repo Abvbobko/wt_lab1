@@ -19,6 +19,9 @@ public class BuyTicket implements ConsoleCommand {
         ClientService clientService = serviceFactory.getClientService();
         String response;
         try {
+            if (!clientService.isAuthorized()) {
+                throw new ServiceException("Authorization required.");
+            }
             int flightID = Integer.parseInt(request);
             clientService.butTicket(flightID);
             response = "Success";

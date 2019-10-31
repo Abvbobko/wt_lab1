@@ -86,16 +86,16 @@ public class Flight implements Serializable {
         return fieldsNames;
     }
 
-    public String getDateOfFlight(){
-        return DateTimeFormatter.ofPattern(FlightServiceImpl.DATE_FORMAT).format(dateOfFlight);
+    public LocalDate getDateOfFlight(){
+        return dateOfFlight;
     }
 
-    public String getArrivalTime() {
-        return DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT).format(arrivalTime);
+    public LocalTime getArrivalTime() {
+        return arrivalTime;
     }
 
-    public String getDepartureTime() {
-        return DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT).format(departureTime);
+    public LocalTime getDepartureTime() {
+        return departureTime;
     }
 
     @Override

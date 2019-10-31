@@ -17,6 +17,10 @@ public class ClientServiceImpl implements ClientService {
     private User currentUser = null;
     private DAOFactory daoObjectFactory = DAOFactory.getInstance();
 
+    public boolean isAuthorized() {
+        return currentUser != null;
+    }
+
     public boolean isAdminMode(){
         if (currentUser == null) {
             return false;
