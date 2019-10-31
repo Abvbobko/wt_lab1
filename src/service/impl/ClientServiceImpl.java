@@ -11,11 +11,19 @@ import service.ClientService;
 import service.exception.ServiceException;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
     private User currentUser = null;
     private DAOFactory daoObjectFactory = DAOFactory.getInstance();
+
+    public List<Ticket> getTickets() throws ServiceException {
+        if (isAuthorized()) {
+            return currentUser.getTickets();
+        }
+        throw new ServiceException("Authorization required.");
+    }
 
     public boolean isAuthorized() {
         return currentUser != null;
@@ -65,6 +73,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void butTicket(int flightID) throws ServiceException {
+        if (!isAuthorized()) {
+            throw new ServiceException("Authorization required.");
+        }
         FlightDAO flightDAO = daoObjectFactory.getFlightDAO();
         if ((flightID >= 0) && (flightID < flightDAO.getFlightsNumber())) {
             currentUser.addTicket(new Ticket(flightDAO.getFlightByID(flightID)));

@@ -1,16 +1,17 @@
 package controller.impl;
 
+import beans.Ticket;
 import controller.ConsoleCommand;
 import service.ClientService;
 import service.exception.ServiceException;
 import service.factory.ServiceFactory;
+import service.impl.ClientServiceImpl;
 
-import javax.xml.ws.Service;
 
-public class BuyTicket implements ConsoleCommand {
+public class ShowTickets implements ConsoleCommand {
     @Override
     public String getParametersInfo() {
-        return "Enter flight id.";
+        return "";
     }
 
     @Override
@@ -19,9 +20,11 @@ public class BuyTicket implements ConsoleCommand {
         ClientService clientService = serviceFactory.getClientService();
         String response;
         try {
-            int flightID = Integer.parseInt(request);
-            clientService.butTicket(flightID);
-            response = "Success";
+            for (Ticket ticket:
+                    clientService.getTickets()) {
+                System.out.println(ticket);
+            }
+            response = "End of tickets list";
         } catch (ServiceException e) {
             response = e.getMessage();
         }
