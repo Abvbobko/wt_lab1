@@ -14,8 +14,8 @@ public class AddFlight implements ConsoleCommand {
         FlightService flightService = serviceFactory.getFlightService();
         String response;
         try {
-            int flightID = Integer.parseInt(request);
-            Object[] parameters = request.split(" ");
+            //int flightID = Integer.parseInt(request);
+            String[] parameters = request.split(" ");
             flightService.addFlight(parameters);
             response = "Success";
         } catch (ServiceException e) {
@@ -26,7 +26,7 @@ public class AddFlight implements ConsoleCommand {
 
     @Override
     public String getParametersInfo() {
-        return String.join(" ", Flight.getFieldsNames());
+        return String.join(", ", Flight.getFieldsNames());
     }
 
 

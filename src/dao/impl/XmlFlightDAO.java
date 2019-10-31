@@ -16,7 +16,7 @@ import java.util.List;
 public class XmlFlightDAO implements FlightDAO {
     //private static Map<Integer, Flight> flights;
     //private Integer lastID = 0;
-    private List<Flight> flights;
+    private List<Flight> flights = new ArrayList<>();
     private static final String DATA_FILE_NAME = "flights.xml";
 
 
@@ -63,7 +63,7 @@ public class XmlFlightDAO implements FlightDAO {
     private void readFlightsFromFile() throws DAOException {
         try {
             flights = new ArrayList<>();
-            FileInputStream fis = new FileInputStream("settings.xml");
+            FileInputStream fis = new FileInputStream(DATA_FILE_NAME);
             XMLDecoder decoder = new XMLDecoder(fis);
             flights = (ArrayList<Flight>)decoder.readObject();
             decoder.close();

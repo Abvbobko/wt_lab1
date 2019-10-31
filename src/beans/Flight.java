@@ -1,5 +1,7 @@
 package beans;
 
+import service.impl.FlightServiceImpl;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -60,6 +62,8 @@ public class Flight implements Serializable {
      //   this.numberOfFreeSeats = plane.getNumberOfSeats();
     }*/
 
+    public Flight(){}
+
     public Flight(String fromCity, String toCity, LocalDate dateOfFlight, LocalTime departureTime,
                   LocalTime arrivalTime) {
         this.fromCity = fromCity;
@@ -74,9 +78,9 @@ public class Flight implements Serializable {
         List<String> fieldsNames = new ArrayList<>();
         fieldsNames.add("Departure City");
         fieldsNames.add("Arrival City");
-        fieldsNames.add("Date of Flight");
-        fieldsNames.add("Departure Time");
-        fieldsNames.add("Arrival Time");
+        fieldsNames.add(String.format("Date of Flight (%s)", FlightServiceImpl.DATE_FORMAT));
+        fieldsNames.add(String.format("Departure Time (%s)", FlightServiceImpl.TIME_FORMAT));
+        fieldsNames.add(String.format("Arrival Time (%s)", FlightServiceImpl.TIME_FORMAT));
 
         return fieldsNames;
     }

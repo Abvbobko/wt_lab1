@@ -33,7 +33,7 @@ public class ConsoleView implements View {
                 showListOfCommands();
             }
 
-            try {
+         //   try {
                 String input = in.nextLine();
                 commandNumber = Integer.parseInt(input);
 
@@ -57,10 +57,10 @@ public class ConsoleView implements View {
 
                 }
 
-            }
-            catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+//            }
+//            catch (Exception e) {
+//                System.out.println(e.getMessage());
+//            }
 
         }
     }
