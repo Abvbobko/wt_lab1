@@ -1,5 +1,6 @@
 package beans;
 
+import service.FlightService;
 import service.impl.FlightServiceImpl;
 
 import java.io.Serializable;
@@ -86,36 +87,30 @@ public class Flight implements Serializable {
     }
 
     public String getDateOfFlight(){
-        return DateTimeFormatter.ofPattern("dd MMM uuuu").format(dateOfFlight);
+        return DateTimeFormatter.ofPattern(FlightServiceImpl.DATE_FORMAT).format(dateOfFlight);
     }
 
     public String getArrivalTime() {
-        return DateTimeFormatter.ofPattern("HH:mm").format(arrivalTime);
+        return DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT).format(arrivalTime);
     }
 
     public String getDepartureTime() {
-        return DateTimeFormatter.ofPattern("HH:mm").format(departureTime);
+        return DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT).format(departureTime);
     }
 
- /*   public int getNumberOfFreeSeats() {
-        return this.numberOfFreeSeats;
-    }*/
-
-   /* public boolean takePlace(){
-        if (numberOfFreeSeats <= 0) {
-            return false;
-        }
-        numberOfFreeSeats--;
-        return true;
+    @Override
+    public String toString(){
+        return String.format("%s: %s;\n%s: %s;\n%s: %s;\n%s: %s;\n%s: %s;\n",
+                "Departure city", fromCity,
+                "Arrival city", toCity,
+                "Date of flight", dateOfFlight
+                        .format(DateTimeFormatter.ofPattern(FlightServiceImpl.DATE_FORMAT)),
+                "Departure time", departureTime
+                        .format(DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT)),
+                "Arrival time", arrivalTime
+                        .format(DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT)));
     }
 
-    public boolean takePlace(int occupiedSeats){
-        if (numberOfFreeSeats - occupiedSeats < 0) {
-            return false;
-        }
-        numberOfFreeSeats -= occupiedSeats;
-        return true;
-    }*/
 
     public int getID(){
         return this.hashCode();
