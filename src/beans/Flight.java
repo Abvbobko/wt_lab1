@@ -20,16 +20,18 @@ public class Flight implements Serializable {
     private String fromCity;
     private String toCity;
 
-    public void setDateOfFlight(LocalDate dateOfFlight) {
-        this.dateOfFlight = dateOfFlight;
+    public void setDateOfFlight(String dateOfFlight) {
+        this.dateOfFlight = LocalDate.parse(dateOfFlight);
     }
 
-    public void setDepartureTime(LocalTime departureTime) {
-        this.departureTime = departureTime;
+    public void setDepartureTime(String departureTime) {
+
+        this.departureTime = LocalTime.parse(departureTime);
     }
 
-    public void setArrivalTime(LocalTime arrivalTime) {
-        this.arrivalTime = arrivalTime;
+    public void setArrivalTime(String arrivalTime) {
+
+        this.arrivalTime = LocalTime.parse(arrivalTime);
     }
 
     /*public void setNumberOfFreeSeats(int numberOfFreeSeats) {
@@ -63,7 +65,13 @@ public class Flight implements Serializable {
      //   this.numberOfFreeSeats = plane.getNumberOfSeats();
     }*/
 
-    public Flight(){}
+    public Flight() {
+        this.fromCity = "";
+        this.toCity = "";
+        this.dateOfFlight = LocalDate.now();
+        this.arrivalTime = LocalTime.now();
+        this.departureTime = LocalTime.now();
+    }
 
     public Flight(String fromCity, String toCity, LocalDate dateOfFlight, LocalTime departureTime,
                   LocalTime arrivalTime) {
@@ -72,10 +80,10 @@ public class Flight implements Serializable {
         this.dateOfFlight = dateOfFlight;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-     //   this.numberOfFreeSeats = numberOfFreeSeats;
+        //   this.numberOfFreeSeats = numberOfFreeSeats;
     }
 
-    public static List<String> getFieldsNames(){
+    public static List<String> getFieldsNames() {
         List<String> fieldsNames = new ArrayList<>();
         fieldsNames.add("Departure City");
         fieldsNames.add("Arrival City");
@@ -86,19 +94,19 @@ public class Flight implements Serializable {
         return fieldsNames;
     }
 
-    public LocalDate getDateOfFlight(){
-        return dateOfFlight;
+    public String getDateOfFlight() {
+        return dateOfFlight.toString();
     }
 
-    public LocalTime getArrivalTime() {
-        return arrivalTime;
+    public String getArrivalTime() {
+        return arrivalTime.toString();
     }
 
-    public LocalTime getDepartureTime() {
-        return departureTime;
+    public String getDepartureTime() {
+        return departureTime.toString();
     }
 
-    @Override
+   /* @Override
     public String toString(){
         return String.format("%s: %s;\n%s: %s;\n%s: %s;\n%s: %s;\n%s: %s;\n",
                 "Departure city", fromCity,
@@ -109,10 +117,10 @@ public class Flight implements Serializable {
                         .format(DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT)),
                 "Arrival time", arrivalTime
                         .format(DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT)));
-    }
+    }*/
 
 
-    public int getID(){
+    public int getID() {
         return this.hashCode();
     }
 }

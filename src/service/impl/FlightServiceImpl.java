@@ -18,7 +18,7 @@ public class FlightServiceImpl implements FlightService {
     private FlightDAO flightDAO = daoFactory.getFlightDAO();
 
     public static final String DATE_FORMAT = "d.MM.yyyy";
-    public static final String TIME_FORMAT = "d.MM.yyyy";
+    public static final String TIME_FORMAT = "HH:mm";
 
     @Override
     public void addFlight(String[] flightAttributes) throws ServiceException {
@@ -29,7 +29,7 @@ public class FlightServiceImpl implements FlightService {
                     flightAttributes[0],
                     flightAttributes[1],
                     LocalDate.parse(flightAttributes[2], dateFormatter),
-                    LocalTime.parse(flightAttributes[3], timeFormatter),
+                    LocalTime.parse(flightAttributes[3]),
                     LocalTime.parse(flightAttributes[4], timeFormatter)/*, (int)flightAttributes[5]*/
             ));
         } catch (DAOException | ArrayIndexOutOfBoundsException e) {

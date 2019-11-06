@@ -67,8 +67,8 @@ public class XmlFlightDAO implements FlightDAO {
             FileInputStream fis = new FileInputStream(DATA_FILE_NAME);
             XMLDecoder decoder = new XMLDecoder(fis);
             flights = (ArrayList<Flight>)decoder.readObject();
-            int firstFlightsCnt = flights.size();
-            for (Flight flight:
+     //       int firstFlightsCnt = flights.size();
+/*            for (Flight flight:
                  flights) {
                 if (LocalDate.now().compareTo(flight.getDateOfFlight()) > 0){
                     flights.remove(flight);
@@ -76,7 +76,7 @@ public class XmlFlightDAO implements FlightDAO {
             }
             if (firstFlightsCnt > flights.size()){
                 writeFlightsToFile();
-            }
+            }*/
             decoder.close();
             fis.close();
       
@@ -95,7 +95,7 @@ public class XmlFlightDAO implements FlightDAO {
             }
             FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
             XMLEncoder encoder = new XMLEncoder(fos);
-            encoder.writeObject(flights);
+            encoder.writeObject((ArrayList<Flight>)flights);
             encoder.close();
             fos.close();
         } catch (IOException e) {

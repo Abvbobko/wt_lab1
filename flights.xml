@@ -3,31 +3,20 @@
  <object class="java.util.ArrayList">
   <void method="add">
    <object class="beans.Flight">
+    <void property="arrivalTime">
+     <string>20:21</string>
+    </void>
+    <void property="dateOfFlight">
+     <string>2019-02-20</string>
+    </void>
+    <void property="departureTime">
+     <string>20:20</string>
+    </void>
     <void property="fromCity">
-     <string>m</string>
+     <string>a</string>
     </void>
     <void property="toCity">
-     <string>m</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="beans.Flight">
-    <void property="fromCity">
-     <string>m</string>
-    </void>
-    <void property="toCity">
-     <string>m</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="beans.Flight">
-    <void property="fromCity">
-     <string>m</string>
-    </void>
-    <void property="toCity">
-     <string>m</string>
+     <string>a</string>
     </void>
    </object>
   </void>
