@@ -3,7 +3,7 @@ package beans;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Plane implements Serializable {
+public class Plane implements Serializable, Comparable {
     private Pilot pilot;
     final private String brand;
     final private int numberOfSeats;
@@ -43,4 +43,12 @@ public class Plane implements Serializable {
         this.pilot = pilot;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Plane otherPlane = (Plane)o;
+        if (numberOfSeats == otherPlane.getNumberOfSeats()) {
+            return 0;
+        }
+        return (numberOfSeats > otherPlane.getNumberOfSeats()) ? 1 : -1;
+    }
 }

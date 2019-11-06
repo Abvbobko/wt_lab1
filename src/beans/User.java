@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class User implements Serializable {
+public class User implements Serializable, Comparable {
 
     private ArrayList<Ticket> tickets = new ArrayList<>();
     private boolean admin = false;
@@ -65,4 +65,8 @@ public class User implements Serializable {
         return passwordHash;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return login.compareTo(((User) o).getLogin());
+    }
 }

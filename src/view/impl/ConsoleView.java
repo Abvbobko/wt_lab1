@@ -54,7 +54,7 @@ public class ConsoleView implements View {
                     }
 
                     System.out.println(controller.executeTask(commandNumber, parameters));
-
+                    commandNumber = Commands.getID(Commands.CommandName.HELP);
                 }
 
 //            }

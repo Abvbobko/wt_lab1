@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Flight implements Serializable {
+public class Flight implements Serializable, Comparable {
     private LocalDate dateOfFlight;
     private LocalTime departureTime;
     private LocalTime arrivalTime;
@@ -126,6 +126,23 @@ public class Flight implements Serializable {
                         .format(DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT)),
                 "Arrival time", arrivalTime
                         .format(DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT)));
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Flight otherFlight = (Flight)o;
+
+        int compareResult = dateOfFlight.compareTo(LocalDate.parse(otherFlight.getDateOfFlight()));
+        if (compareResult == 0) {
+            compareResult = arrivalTime.compareTo(LocalTime.parse(otherFlight.getArrivalTime()));
+            if (compareResult == 0) {
+                compareResult = fromCity.compareTo(otherFlight.getFromCity());
+                if (compareResult == 0) {
+                    compareResult = toCity.compareTo(otherFlight.getToCity());
+                }
+            }
+        }
+        return compareResult;
     }
 
 

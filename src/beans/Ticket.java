@@ -5,7 +5,7 @@ import com.sun.org.apache.xpath.internal.operations.Equals;
 import java.io.Serializable;
 import java.util.Comparator;
 
-public class Ticket implements Serializable {
+public class Ticket implements Serializable, Comparable {
 
    // private int price;
     private Flight flight;
@@ -31,4 +31,8 @@ public class Ticket implements Serializable {
         return "_TICKET_\n" + flight.toString();
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return flight.compareTo(((Ticket) o).getFlight());
+    }
 }

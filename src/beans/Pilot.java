@@ -2,7 +2,7 @@ package beans;
 
 import java.io.Serializable;
 
-public class Pilot implements Serializable {
+public class Pilot implements Serializable, Comparable {
     private String name;
     private String surname;
     private String middleName;
@@ -28,4 +28,12 @@ public class Pilot implements Serializable {
         this.experience += 0.5;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Pilot otherPilot = (Pilot)o;
+        if (experience == otherPilot.getExperience()) {
+            return 0;
+        }
+        return (experience > otherPilot.getExperience()) ? 1 : -1;
+    }
 }
