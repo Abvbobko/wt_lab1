@@ -1,7 +1,10 @@
 package beans;
 
+import beans.sorts.SortTicketsByDate;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class User implements Serializable {
@@ -47,6 +50,7 @@ public class User implements Serializable {
 
     public void addTicket(Ticket ticket){
         tickets.add(ticket);
+        tickets.sort(new SortTicketsByDate());
     }
 
     public ArrayList<Ticket> getTickets() {

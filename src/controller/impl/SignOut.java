@@ -18,12 +18,8 @@ public class SignOut implements ConsoleCommand {
 
         String response;
 
-        try {
-            clientService.singOut();
-            response = "Success";
-        } catch (ServiceException e) {
-            response = e.getMessage();
-        }
+        clientService.singOut();
+        response = "Success";
         return response;
     }
 }
