@@ -6,7 +6,7 @@ import java.util.List;
 
 public class User implements Serializable {
 
-    private List<Ticket> tickets = new ArrayList<>();
+    private ArrayList<Ticket> tickets = new ArrayList<>();
     private boolean admin = false;
     private String login;
 
@@ -26,7 +26,7 @@ public class User implements Serializable {
         this.admin = admin;
     }
 
-    public void setTickets(List<Ticket> tickets) {
+    public void setTickets(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
     }
 
@@ -39,17 +39,17 @@ public class User implements Serializable {
         this.passwordHash = String.valueOf(password.hashCode());
     }
 
-    public User(String login, String password, List<Ticket> tickets){
+    public User(String login, String password, ArrayList<Ticket> tickets){
         this.tickets = tickets;
         this.login = login;
         this.passwordHash = String.valueOf(password.hashCode());
     }
 
     public void addTicket(Ticket ticket){
-
+        tickets.add(ticket);
     }
 
-    public List<Ticket> getTickets() {
+    public ArrayList<Ticket> getTickets() {
         return tickets;
     }
 

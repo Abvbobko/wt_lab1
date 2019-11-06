@@ -2,21 +2,29 @@ package controller.impl;
 
 import controller.ConsoleCommand;
 import service.ClientService;
+import service.FlightService;
 import service.exception.ServiceException;
 import service.factory.ServiceFactory;
 
 import javax.xml.ws.Service;
 
 public class BuyTicket implements ConsoleCommand {
+    private ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private ClientService clientService = serviceFactory.getClientService();
+    private FlightService flightService = serviceFactory.getFlightService();
+
     @Override
     public String getParametersInfo() {
-        return "Enter flight id.";
+        String flights = flightService.getFlightsList();
+        if (!flights.equals("")) {
+            return "Enter flight id.\n" + flights;
+        }
+        return "There are no flights.";
     }
 
     @Override
     public String execute(String request) {
-        ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        ClientService clientService = serviceFactory.getClientService();
+
         String response;
         try {
             int flightID = Integer.parseInt(request);

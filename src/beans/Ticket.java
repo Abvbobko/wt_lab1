@@ -8,8 +8,19 @@ public class Ticket implements Serializable {
 
    // private int price;
     private Flight flight;
-    //private int place;
 
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    //private int place;
+    public Ticket(){
+        //flight = new Flight();
+    }
     public Ticket(Flight flight ){
         this.flight = flight;
     }

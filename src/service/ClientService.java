@@ -13,7 +13,7 @@ public interface ClientService {
     boolean isAuthorized();
     List<Ticket> getTickets() throws ServiceException;
     void singIn(String login, String password) throws ServiceException;
-    void singOut() throws ServiceException;
+    void singOut();
     void registration(String login, String password) throws ServiceException;
     void butTicket(int flightID) throws ServiceException;
 }

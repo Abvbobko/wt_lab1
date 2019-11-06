@@ -31,8 +31,8 @@ public class XmlFlightDAO implements FlightDAO {
         return null;
     }
 
+    @Override
     public int getFlightsNumber(){
-
         return flights.size();
     }
 
@@ -40,6 +40,14 @@ public class XmlFlightDAO implements FlightDAO {
         if (new File(DATA_FILE_NAME).exists()) {
             try {
                 readFlightsFromFile();
+//                for (Flight flight:
+//                        flights) {
+//                    if (LocalDate.now().compareTo(LocalDate.parse(flight.getDateOfFlight())) > 0){
+//                        deleteFlight(flight);
+//                    }
+//                }
+
+
             } catch (DAOException e) {
                 e.printStackTrace();
             }
@@ -55,9 +63,9 @@ public class XmlFlightDAO implements FlightDAO {
     }
 
     @Override
-    public void deleteFlight(Integer flightID) throws DAOException {
+    public void deleteFlight(Flight flight) throws DAOException {
        // flights.remove(flightID);
-        flights.remove((int)flightID);
+        flights.remove(flight);
         writeFlightsToFile();
     }
 
@@ -67,19 +75,10 @@ public class XmlFlightDAO implements FlightDAO {
             FileInputStream fis = new FileInputStream(DATA_FILE_NAME);
             XMLDecoder decoder = new XMLDecoder(fis);
             flights = (ArrayList<Flight>)decoder.readObject();
-     //       int firstFlightsCnt = flights.size();
-/*            for (Flight flight:
-                 flights) {
-                if (LocalDate.now().compareTo(flight.getDateOfFlight()) > 0){
-                    flights.remove(flight);
-                }
-            }
-            if (firstFlightsCnt > flights.size()){
-                writeFlightsToFile();
-            }*/
             decoder.close();
             fis.close();
-      
+
+
         } catch (IOException e) {
             throw new DAOException(e.getMessage());
         }

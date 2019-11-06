@@ -3,13 +3,8 @@ package dao;
 import beans.User;
 import dao.exception.DAOException;
 
-import java.io.IOException;
-
 public interface UserDAO {
-    // ToDo: add buy ticket, bring back
-    // todo: May be add workers of airline(administrations)
-
-
+    void updateUser(User user) throws DAOException;
     User signIn(String login, String password) throws DAOException;
-    User registration(String login, String password) throws IOException, DAOException;
+    void registration(String login, String password) throws DAOException;
 }

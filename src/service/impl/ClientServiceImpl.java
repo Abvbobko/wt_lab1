@@ -11,6 +11,7 @@ import service.ClientService;
 import service.exception.ServiceException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
@@ -18,7 +19,7 @@ public class ClientServiceImpl implements ClientService {
     private User currentUser = null;
     private DAOFactory daoObjectFactory = DAOFactory.getInstance();
 
-    public List<Ticket> getTickets() throws ServiceException {
+    public ArrayList<Ticket> getTickets() throws ServiceException {
         if (isAuthorized()) {
             return currentUser.getTickets();
         }
@@ -65,7 +66,7 @@ public class ClientServiceImpl implements ClientService {
             UserDAO userDAO = daoObjectFactory.getUserDAO();
             userDAO.registration(login, password);
 
-        } catch (DAOException | IOException e) {
+        } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         }
 
@@ -79,6 +80,12 @@ public class ClientServiceImpl implements ClientService {
         FlightDAO flightDAO = daoObjectFactory.getFlightDAO();
         if ((flightID >= 0) && (flightID < flightDAO.getFlightsNumber())) {
             currentUser.addTicket(new Ticket(flightDAO.getFlightByID(flightID)));
+            UserDAO userDAO = daoObjectFactory.getUserDAO();
+            try {
+                userDAO.updateUser(currentUser);
+            } catch (DAOException e) {
+                throw new ServiceException(e.getMessage());
+            }
             return;
         }
         throw new ServiceException("Incorrect flight index.");

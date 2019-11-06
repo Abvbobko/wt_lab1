@@ -2,30 +2,7 @@
 <java version="1.8.0_192" class="java.beans.XMLDecoder">
  <object class="java.util.ArrayList">
   <void method="add">
-   <object class="beans.User"/>
-  </void>
-  <void method="add">
-   <object class="beans.User">
-    <void property="login">
-     <string>2</string>
-    </void>
-    <void property="passwordHash">
-     <string>51</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="beans.User">
-    <void property="login">
-     <string>qwer</string>
-    </void>
-    <void property="passwordHash">
-     <string>3717</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="beans.User">
+   <object class="beans.User" id="User0">
     <void property="admin">
      <boolean>true</boolean>
     </void>
@@ -34,6 +11,54 @@
     </void>
     <void property="passwordHash">
      <string>92668751</string>
+    </void>
+    <void property="tickets">
+     <void method="add">
+      <object class="beans.Ticket">
+       <void property="flight">
+        <object class="beans.Flight">
+         <void property="arrivalTime">
+          <string>20:21</string>
+         </void>
+         <void property="dateOfFlight">
+          <string>2019-02-20</string>
+         </void>
+         <void property="departureTime">
+          <string>20:20</string>
+         </void>
+         <void property="fromCity">
+          <string>a</string>
+         </void>
+         <void property="toCity">
+          <string>a</string>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="beans.Ticket">
+       <void property="flight">
+        <object class="beans.Flight">
+         <void property="arrivalTime">
+          <string>20:21</string>
+         </void>
+         <void property="dateOfFlight">
+          <string>2019-02-20</string>
+         </void>
+         <void property="departureTime">
+          <string>20:20</string>
+         </void>
+         <void property="fromCity">
+          <string>a</string>
+         </void>
+         <void property="toCity">
+          <string>a</string>
+         </void>
+        </object>
+       </void>
+      </object>
+     </void>
     </void>
    </object>
   </void>

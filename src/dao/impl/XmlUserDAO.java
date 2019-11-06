@@ -31,6 +31,12 @@ public class XmlUserDAO implements UserDAO {
     }
 
     @Override
+    public void updateUser(User user) throws DAOException {
+        users.put(user.getLogin(), user);
+        writeUsersToFile();
+    }
+
+    @Override
     public User signIn(String login, String password) throws DAOException {
      //   try{
             if (users.get(login) != null){
@@ -48,12 +54,12 @@ public class XmlUserDAO implements UserDAO {
     }
 
     @Override
-    public User registration(String login, String password) throws DAOException {
+    public void registration(String login, String password) throws DAOException {
         if (users.get(login) == null){
             User newUser = new User(login, password);
             users.put(login, newUser);
             writeUsersToFile();
-            return newUser;
+            return;
         }
         throw new DAOException("User with this login exists.");
     }

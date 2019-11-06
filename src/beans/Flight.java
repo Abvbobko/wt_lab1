@@ -66,11 +66,11 @@ public class Flight implements Serializable {
     }*/
 
     public Flight() {
-        this.fromCity = "";
-        this.toCity = "";
-        this.dateOfFlight = LocalDate.now();
-        this.arrivalTime = LocalTime.now();
-        this.departureTime = LocalTime.now();
+//        this.fromCity = "";
+//        this.toCity = "";
+//        this.dateOfFlight = LocalDate.now();
+//        this.arrivalTime = LocalTime.now();
+//        this.departureTime = LocalTime.now();
     }
 
     public Flight(String fromCity, String toCity, LocalDate dateOfFlight, LocalTime departureTime,
@@ -95,18 +95,27 @@ public class Flight implements Serializable {
     }
 
     public String getDateOfFlight() {
+        if (dateOfFlight == null) {
+            return null;
+        }
         return dateOfFlight.toString();
     }
 
     public String getArrivalTime() {
+        if (arrivalTime == null) {
+            return null;
+        }
         return arrivalTime.toString();
     }
 
     public String getDepartureTime() {
+        if (departureTime == null) {
+            return null;
+        }
         return departureTime.toString();
     }
 
-   /* @Override
+    @Override
     public String toString(){
         return String.format("%s: %s;\n%s: %s;\n%s: %s;\n%s: %s;\n%s: %s;\n",
                 "Departure city", fromCity,
@@ -117,11 +126,11 @@ public class Flight implements Serializable {
                         .format(DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT)),
                 "Arrival time", arrivalTime
                         .format(DateTimeFormatter.ofPattern(FlightServiceImpl.TIME_FORMAT)));
-    }*/
-
-
-    public int getID() {
-        return this.hashCode();
     }
+
+
+//    public int getID() {
+//        return this.hashCode();
+//    }
 }
 
