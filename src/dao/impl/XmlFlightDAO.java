@@ -36,16 +36,16 @@ public class XmlFlightDAO implements FlightDAO {
         return flights.size();
     }
 
+    private void updateFlights() {
+        flights.sort(Flight::compareTo);
+        flights.removeIf(flight -> LocalDate.now().compareTo(LocalDate.parse(flight.getDateOfFlight())) > 0);
+    }
+
     public XmlFlightDAO(){
         if (new File(DATA_FILE_NAME).exists()) {
             try {
                 readFlightsFromFile();
-//                for (Flight flight:
-//                        flights) {
-//                    if (LocalDate.now().compareTo(LocalDate.parse(flight.getDateOfFlight())) > 0){
-//                        deleteFlight(flight);
-//                    }
-//                }
+                updateFlights();
 
 
             } catch (DAOException e) {
@@ -59,6 +59,7 @@ public class XmlFlightDAO implements FlightDAO {
       //  lastID++;
        // flights.put(lastID, flight);
         flights.add(flight);
+        updateFlights();
         writeFlightsToFile();
     }
 

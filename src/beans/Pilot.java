@@ -15,13 +15,41 @@ public class Pilot implements Serializable, Comparable {
         this.experience = experience;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public void setExperience(float experience) {
+        this.experience = experience;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
     public String getInitials(){
 
         return String.format("%s %c.%c.", surname, name.charAt(0), middleName.charAt(0));
     }
 
     public float getExperience(){
-        return this.experience;
+        return experience;
     }
 
     public void incExperience(){
