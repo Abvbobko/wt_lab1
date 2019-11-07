@@ -14,11 +14,11 @@ import java.time.format.DateTimeFormatter;
 
 public class FlightServiceImpl implements FlightService {
 
-    private DAOFactory daoFactory = DAOFactory.getInstance();
-    private FlightDAO flightDAO = daoFactory.getFlightDAO();
-
     public static final String DATE_FORMAT = "d.MM.yyyy";
     public static final String TIME_FORMAT = "HH:mm";
+
+    private DAOFactory daoFactory = DAOFactory.getInstance();
+    private FlightDAO flightDAO = daoFactory.getFlightDAO();
 
     @Override
     public String getFlightsList() {

@@ -23,10 +23,10 @@ public class ReturnTicket implements ConsoleCommand {
                     }
                     return "Enter flight id.";
                 }
-                System.out.println("There are no tickets.");
-                return "";
+                throw new ServiceException("There are no tickets.");
+
             } catch (ServiceException e) {
-                System.out.println(e.getLocalizedMessage());
+                System.out.println(e.getMessage());
                 return "";
             }
         }

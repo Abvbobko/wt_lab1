@@ -104,6 +104,4 @@ public class ClientServiceImpl implements ClientService {
     public void singOut() {
         currentUser = null;
     }
-
-
 }

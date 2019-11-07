@@ -20,10 +20,7 @@ public class Flight implements Serializable, Comparable {
     }
 
     public String getDateOfFlight() {
-        if (dateOfFlight == null) {
-            return null;
-        }
-        return dateOfFlight.toString();
+        return (dateOfFlight == null) ? null : dateOfFlight.toString();
     }
 
     public void setDepartureTime(String departureTime) {
@@ -31,10 +28,7 @@ public class Flight implements Serializable, Comparable {
     }
 
     public String getDepartureTime() {
-        if (departureTime == null) {
-            return null;
-        }
-        return departureTime.toString();
+        return (departureTime == null) ? null : departureTime.toString();
     }
 
     public void setArrivalTime(String arrivalTime) {
@@ -42,10 +36,7 @@ public class Flight implements Serializable, Comparable {
     }
 
     public String getArrivalTime() {
-        if (arrivalTime == null) {
-            return null;
-        }
-        return arrivalTime.toString();
+        return (arrivalTime == null) ? null : arrivalTime.toString();
     }
 
 

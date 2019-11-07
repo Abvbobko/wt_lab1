@@ -13,14 +13,13 @@ public class SignIn implements ConsoleCommand {
         String password;
         String response;
 
-        String delimiters = "[ ]+";
-
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         ClientService clientService = serviceFactory.getClientService();
 
         try {
-            login = request.split(delimiters)[0];
-            password = request.split(delimiters)[1];
+            String DELIMETERS = "[ ]+";
+            login = request.split(DELIMETERS)[0];
+            password = request.split(DELIMETERS)[1];
 
             clientService.singIn(login, password);
             response = "Welcome";

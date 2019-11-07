@@ -41,7 +41,6 @@ public class XmlFlightDAO implements FlightDAO {
                 readFlightsFromFile();
                 updateFlights();
 
-
             } catch (DAOException e) {
                 e.printStackTrace();
             }

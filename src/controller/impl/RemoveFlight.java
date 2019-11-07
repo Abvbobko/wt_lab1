@@ -1,14 +1,12 @@
 package controller.impl;
 
 import controller.ConsoleCommand;
-import service.ClientService;
 import service.FlightService;
 import service.exception.ServiceException;
 import service.factory.ServiceFactory;
 
 public class RemoveFlight implements ConsoleCommand {
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    private ClientService clientService = serviceFactory.getClientService();
     private FlightService flightService = serviceFactory.getFlightService();
 
     @Override
@@ -23,8 +21,8 @@ public class RemoveFlight implements ConsoleCommand {
 
     @Override
     public String execute(String request) {
-        String response = "";
 
+        String response = "";
         if (!request.equals("")) {
             try {
                 int flightID = Integer.parseInt(request);

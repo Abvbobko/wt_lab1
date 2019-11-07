@@ -11,12 +11,15 @@ public final class DAOFactory {
     private final UserDAO xmlUserImpl = new XmlUserDAO();
 
     private DAOFactory(){}
+
     public static DAOFactory getInstance(){
         return instance;
     }
+
     public FlightDAO getFlightDAO(){
         return xmlFlightImpl;
     }
+
     public UserDAO getUserDAO(){
         return xmlUserImpl;
     }

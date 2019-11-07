@@ -27,7 +27,6 @@ public class XmlUserDAO implements UserDAO {
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override
