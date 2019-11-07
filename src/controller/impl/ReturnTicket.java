@@ -12,7 +12,6 @@ public class ReturnTicket implements ConsoleCommand {
 
     @Override
     public String getParametersInfo() {
-        //СДелать проверку: авторизован, значит вывести список билетов, если не авторизован вернуть что требуется авторизация!
         if (clientService.isAuthorized()) {
             try {
                 if (!clientService.getTickets().isEmpty()) {
@@ -32,7 +31,6 @@ public class ReturnTicket implements ConsoleCommand {
             }
         }
         throw new RuntimeException("Аuthorization required.");
-        //return "";
     }
 
     @Override

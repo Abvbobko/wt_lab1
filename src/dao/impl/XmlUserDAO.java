@@ -38,19 +38,13 @@ public class XmlUserDAO implements UserDAO {
 
     @Override
     public User signIn(String login, String password) throws DAOException {
-     //   try{
-            if (users.get(login) != null){
-                if (users.get(login).getPasswordHash().equals(String.valueOf(password.hashCode()))){
-                    return users.get(login);
-                }
-                throw new DAOException("Error. Incorrect password.");
+        if (users.get(login) != null){
+            if (users.get(login).getPasswordHash().equals(String.valueOf(password.hashCode()))){
+                return users.get(login);
             }
-            throw new DAOException("Error. Incorrect login.");
-//        }
-//            catch(Exception e){
-//                throw new DAOException("Error. Incorrect login.");
-//            }
-
+            throw new DAOException("Error. Incorrect password.");
+        }
+        throw new DAOException("Error. Incorrect login.");
     }
 
     @Override
@@ -65,7 +59,6 @@ public class XmlUserDAO implements UserDAO {
     }
 
     private void readUsersFromFile() throws DAOException {
-
         try {
             users = new HashMap<>();
             FileInputStream fis = new FileInputStream(DATA_FILE_NAME);
@@ -93,7 +86,6 @@ public class XmlUserDAO implements UserDAO {
             XMLEncoder encoder = new XMLEncoder(fos);
 
             ArrayList<User> us = new ArrayList<>(users.values());
-
             encoder.writeObject(us);
 
             encoder.close();

@@ -1,6 +1,5 @@
 package controller;
 
-import beans.User;
 import service.ClientService;
 import service.factory.ServiceFactory;
 
@@ -10,7 +9,6 @@ public final class Controller {
     private ClientService clientService = serviceFactory.getClientService();
 
     private final CommandProvider provider = new CommandProvider();
-
 
     public String executeTask(int commandNumber, String request){
 
@@ -31,10 +29,6 @@ public final class Controller {
         }
         return ((ConsoleCommand)provider.getCommand(commandName)).getParametersInfo();
     }
-
-    /*public int getNumberOfCommands() {
-        return Commands.CommandName.values().length;
-    }*/
 
     public Commands.CommandName[] getListOfCommands() {
         return Commands.CommandName.values();

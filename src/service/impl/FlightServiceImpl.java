@@ -25,7 +25,6 @@ public class FlightServiceImpl implements FlightService {
         StringBuilder response = new StringBuilder();
         for (int i = 0; i < flightDAO.getFlightsNumber(); i++){
             response.append(String.format("%d.\n%s", i, flightDAO.getFlightByID(i).toString()));
-            //response.append(String.valueOf(i)).append();
         }
         return String.valueOf(response);
     }
@@ -44,14 +43,12 @@ public class FlightServiceImpl implements FlightService {
     public void addFlight(String[] flightAttributes) throws ServiceException {
         try {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-            //DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(TIME_FORMAT);
             flightDAO.addFlight(new Flight(
                     flightAttributes[0],
                     flightAttributes[1],
                     LocalDate.parse(flightAttributes[2], dateFormatter),
                     LocalTime.parse(flightAttributes[3]),
-                    LocalTime.parse(flightAttributes[4]/*, timeFormatter*/)/*, (int)flightAttributes[5]*/
-            ));
+                    LocalTime.parse(flightAttributes[4])));
         } catch (DAOException | ArrayIndexOutOfBoundsException e) {
             throw new ServiceException("Error, check the entered parameters");
         }

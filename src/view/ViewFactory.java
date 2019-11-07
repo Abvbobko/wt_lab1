@@ -12,8 +12,7 @@ public final class ViewFactory {
         return instance;
     }
 
-
-    public View getConsoleView(){
+    View getConsoleView(){
         return consoleView;
     }
 }

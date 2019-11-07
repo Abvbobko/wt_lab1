@@ -14,7 +14,6 @@ public class AddFlight implements ConsoleCommand {
         FlightService flightService = serviceFactory.getFlightService();
         String response;
         try {
-            //int flightID = Integer.parseInt(request);
             String[] parameters = request.split(" ");
             flightService.addFlight(parameters);
             response = "Success";

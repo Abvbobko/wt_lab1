@@ -56,8 +56,6 @@ public class Commands{
                 return key;
             }
         }
-
-        //ToDo throw error
         return 0;
     }
 

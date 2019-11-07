@@ -1,6 +1,5 @@
 package service.impl;
 
-import beans.Flight;
 import beans.Ticket;
 import beans.User;
 import dao.FlightDAO;
@@ -9,10 +8,7 @@ import dao.factory.DAOFactory;
 import dao.UserDAO;
 import service.ClientService;
 import service.exception.ServiceException;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
@@ -47,7 +43,6 @@ public class ClientServiceImpl implements ClientService {
             UserDAO userDAO = daoObjectFactory.getUserDAO();
             currentUser = userDAO.signIn(login, password);
 
-            //throw new DAOException("Incorrect login or password.");
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage());
         }

@@ -1,13 +1,9 @@
 package beans;
 
-import com.sun.org.apache.xpath.internal.operations.Equals;
-
 import java.io.Serializable;
-import java.util.Comparator;
 
 public class Ticket implements Serializable, Comparable {
 
-   // private int price;
     private Flight flight;
 
     public void setFlight(Flight flight) {
@@ -18,10 +14,8 @@ public class Ticket implements Serializable, Comparable {
         return flight;
     }
 
-    //private int place;
-    public Ticket(){
-        //flight = new Flight();
-    }
+    public Ticket(){ }
+
     public Ticket(Flight flight ){
         this.flight = flight;
     }

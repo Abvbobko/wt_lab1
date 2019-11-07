@@ -1,6 +1,5 @@
 package service.factory;
 
-import beans.Flight;
 import service.ClientService;
 import service.FlightService;
 import service.impl.ClientServiceImpl;

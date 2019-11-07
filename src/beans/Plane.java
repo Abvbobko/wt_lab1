@@ -15,10 +15,6 @@ public class Plane implements Serializable, Comparable {
         this.yearOfManufacture = yearOfManufacture;
     }
 
-    /*public int getNumberOfSeats(){
-
-        return this.numberOfSeats;
-    }*/
     public int getNumberOfSeats() {
         return this.numberOfSeats;
     }

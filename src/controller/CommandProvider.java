@@ -19,7 +19,6 @@ final class CommandProvider {
         repository.put(Commands.CommandName.BUY_TICKET, new BuyTicket());
         repository.put(Commands.CommandName.RETURN_TICKET, new ReturnTicket());
         repository.put(Commands.CommandName.SHOW_TICKETS, new ShowTickets());
-
         //repository.put(CommandName.WRONG_REQUEST, new WrongRequest());
 
     }

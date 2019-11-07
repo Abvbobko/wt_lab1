@@ -1,22 +1,17 @@
 package beans;
 
-import service.FlightService;
 import service.impl.FlightServiceImpl;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Flight implements Serializable, Comparable {
     private LocalDate dateOfFlight;
     private LocalTime departureTime;
     private LocalTime arrivalTime;
-    //private int numberOfFreeSeats;
     private String fromCity;
     private String toCity;
 
@@ -24,19 +19,35 @@ public class Flight implements Serializable, Comparable {
         this.dateOfFlight = LocalDate.parse(dateOfFlight);
     }
 
-    public void setDepartureTime(String departureTime) {
+    public String getDateOfFlight() {
+        if (dateOfFlight == null) {
+            return null;
+        }
+        return dateOfFlight.toString();
+    }
 
+    public void setDepartureTime(String departureTime) {
         this.departureTime = LocalTime.parse(departureTime);
     }
 
-    public void setArrivalTime(String arrivalTime) {
+    public String getDepartureTime() {
+        if (departureTime == null) {
+            return null;
+        }
+        return departureTime.toString();
+    }
 
+    public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = LocalTime.parse(arrivalTime);
     }
 
-    /*public void setNumberOfFreeSeats(int numberOfFreeSeats) {
-        this.numberOfFreeSeats = numberOfFreeSeats;
-    }*/
+    public String getArrivalTime() {
+        if (arrivalTime == null) {
+            return null;
+        }
+        return arrivalTime.toString();
+    }
+
 
     public String getFromCity() {
         return fromCity;
@@ -54,24 +65,7 @@ public class Flight implements Serializable, Comparable {
         this.toCity = toCity;
     }
 
-    /*public Flight(String fromCity, String toCity, LocalDate dateOfFlight, LocalTime departure,
-                  LocalTime arrival, Plane plane) {
-
-        this.fromCity = fromCity;
-        this.toCity = toCity;
-        this.dateOfFlight = dateOfFlight;
-        this.departureTime = departure;
-        this.arrivalTime = arrival;
-     //   this.numberOfFreeSeats = plane.getNumberOfSeats();
-    }*/
-
-    public Flight() {
-//        this.fromCity = "";
-//        this.toCity = "";
-//        this.dateOfFlight = LocalDate.now();
-//        this.arrivalTime = LocalTime.now();
-//        this.departureTime = LocalTime.now();
-    }
+    public Flight() { }
 
     public Flight(String fromCity, String toCity, LocalDate dateOfFlight, LocalTime departureTime,
                   LocalTime arrivalTime) {
@@ -80,7 +74,6 @@ public class Flight implements Serializable, Comparable {
         this.dateOfFlight = dateOfFlight;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-        //   this.numberOfFreeSeats = numberOfFreeSeats;
     }
 
     public static List<String> getFieldsNames() {
@@ -92,27 +85,6 @@ public class Flight implements Serializable, Comparable {
         fieldsNames.add(String.format("Arrival Time (%s)", FlightServiceImpl.TIME_FORMAT));
 
         return fieldsNames;
-    }
-
-    public String getDateOfFlight() {
-        if (dateOfFlight == null) {
-            return null;
-        }
-        return dateOfFlight.toString();
-    }
-
-    public String getArrivalTime() {
-        if (arrivalTime == null) {
-            return null;
-        }
-        return arrivalTime.toString();
-    }
-
-    public String getDepartureTime() {
-        if (departureTime == null) {
-            return null;
-        }
-        return departureTime.toString();
     }
 
     @Override
@@ -145,9 +117,5 @@ public class Flight implements Serializable, Comparable {
         return compareResult;
     }
 
-
-//    public int getID() {
-//        return this.hashCode();
-//    }
 }
 
