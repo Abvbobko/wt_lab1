@@ -29,12 +29,25 @@ public class XmlUserDAO implements UserDAO {
         }
     }
 
+    /**
+     * Func update user information in memory and in file
+     *
+     * @param user user in which there are changes
+     * @throws DAOException if errors occurred while writing to the file
+     */
     @Override
     public void updateUser(User user) throws DAOException {
         users.put(user.getLogin(), user);
         writeUsersToFile();
     }
 
+    /**
+     *
+     * @param login user's login
+     * @param password user's password
+     * @return user if sign in was successful
+     * @throws DAOException if user enter incorrect login/password
+     */
     @Override
     public User signIn(String login, String password) throws DAOException {
         if (users.get(login) != null){
@@ -46,6 +59,12 @@ public class XmlUserDAO implements UserDAO {
         throw new DAOException("Error. Incorrect login.");
     }
 
+    /**
+     *
+     * @param login new user login
+     * @param password new user password
+     * @throws DAOException if user with this login is exist
+     */
     @Override
     public void registration(String login, String password) throws DAOException {
         if (users.get(login) == null){
@@ -57,6 +76,10 @@ public class XmlUserDAO implements UserDAO {
         throw new DAOException("User with this login exists.");
     }
 
+    /**
+     *
+     * @throws DAOException if there are troubles with file reading
+     */
     private void readUsersFromFile() throws DAOException {
         try {
             users = new HashMap<>();
@@ -73,6 +96,10 @@ public class XmlUserDAO implements UserDAO {
         }
     }
 
+    /**
+     *
+     * @throws DAOException if there are troubles with file writing
+     */
     private void writeUsersToFile() throws DAOException {
         try {
             File f = new File(DATA_FILE_NAME);

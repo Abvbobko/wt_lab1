@@ -13,6 +13,8 @@ public class RemoveFlight implements ConsoleCommand {
     public String getParametersInfo() {
         String flights = flightService.getFlightsList();
         if (!flights.equals("")) {
+            // if there are some flights in flights list
+
             return "Enter flight id.\n" + flights;
         }
         System.out.println("There are no flights.");
@@ -23,6 +25,8 @@ public class RemoveFlight implements ConsoleCommand {
     public String execute(String request) {
 
         String response = "";
+        //if request is "" it's mean that flights list is empty
+
         if (!request.equals("")) {
             try {
                 int flightID = Integer.parseInt(request);

@@ -28,6 +28,7 @@ public class Commands{
             return name;
         }
 
+        // ordinary user is not admin
         public boolean isForOrdinaryUser(){
             return this.forOrdinaryUser;
         }

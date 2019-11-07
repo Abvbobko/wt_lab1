@@ -18,6 +18,24 @@ public class XmlFlightDAO implements FlightDAO {
     private List<Flight> flights = new ArrayList<>();
     private static final String DATA_FILE_NAME = "flights.xml";
 
+    public XmlFlightDAO(){
+        if (new File(DATA_FILE_NAME).exists()) {
+            try {
+                readFlightsFromFile();
+                // sort flights and delete unnecessary (old)
+                updateFlights();
+
+            } catch (DAOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     *
+     * @param id flight number
+     * @return Flight object if flight with that id exist (else null)
+     */
     public Flight getFlightByID(int id){
         if ((id >= 0) && (id < flights.size())){
             return flights.get(id);
@@ -30,23 +48,19 @@ public class XmlFlightDAO implements FlightDAO {
         return flights.size();
     }
 
+    /**
+     * Method sort flights in memory and delete old flights
+     */
     private void updateFlights() {
         flights.sort(Flight::compareTo);
         flights.removeIf(flight -> LocalDate.now().compareTo(LocalDate.parse(flight.getDateOfFlight())) > 0);
     }
 
-    public XmlFlightDAO(){
-        if (new File(DATA_FILE_NAME).exists()) {
-            try {
-                readFlightsFromFile();
-                updateFlights();
-
-            } catch (DAOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
+    /**
+     *
+     * @param flight new flight to saving
+     * @throws DAOException if there are troubles with file writing
+     */
     @Override
     public void addFlight(Flight flight) throws DAOException {
         flights.add(flight);
@@ -54,12 +68,21 @@ public class XmlFlightDAO implements FlightDAO {
         writeFlightsToFile();
     }
 
+    /**
+     *
+     * @param flightID flight number
+     * @throws DAOException if there are troubles with file writing
+     */
     @Override
     public void deleteFlight(int flightID) throws DAOException {
         flights.remove(flightID);
         writeFlightsToFile();
     }
 
+    /**
+     *
+     * @throws DAOException if there are troubles with file reading
+     */
     private void readFlightsFromFile() throws DAOException {
         try {
             flights = new ArrayList<>();
@@ -74,6 +97,10 @@ public class XmlFlightDAO implements FlightDAO {
         }
     }
 
+    /**
+     *
+     * @throws DAOException if there are troubles with file writing
+     */
     private void writeFlightsToFile() throws DAOException {
         try {
             File f = new File(DATA_FILE_NAME);

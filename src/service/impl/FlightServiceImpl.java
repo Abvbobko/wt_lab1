@@ -20,6 +20,10 @@ public class FlightServiceImpl implements FlightService {
     private DAOFactory daoFactory = DAOFactory.getInstance();
     private FlightDAO flightDAO = daoFactory.getFlightDAO();
 
+    /**
+     *
+     * @return list of flights in String format
+     */
     @Override
     public String getFlightsList() {
         StringBuilder response = new StringBuilder();
@@ -29,6 +33,11 @@ public class FlightServiceImpl implements FlightService {
         return String.valueOf(response);
     }
 
+    /**
+     *
+     * @param flightID number of flight
+     * @throws ServiceException if can't delete flight (flight doesn't exist for example)
+     */
     @Override
     public void deleteFlight(int flightID) throws ServiceException {
         try {
@@ -36,9 +45,13 @@ public class FlightServiceImpl implements FlightService {
         } catch (DAOException | ArrayIndexOutOfBoundsException e) {
             throw new ServiceException(e.getMessage());
         }
-
     }
 
+    /**
+     *
+     * @param flightAttributes array of attributes of new flight
+     * @throws ServiceException if error in the transmitted attributes
+     */
     @Override
     public void addFlight(String[] flightAttributes) throws ServiceException {
         try {

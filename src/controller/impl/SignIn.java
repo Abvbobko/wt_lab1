@@ -21,7 +21,7 @@ public class SignIn implements ConsoleCommand {
             login = request.split(DELIMETERS)[0];
             password = request.split(DELIMETERS)[1];
 
-            clientService.singIn(login, password);
+            clientService.signIn(login, password);
             response = "Welcome";
 
         } catch (ServiceException e) {

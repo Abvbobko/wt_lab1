@@ -10,6 +10,9 @@ public class ConsoleView implements View {
 
     private Controller controller = new Controller();
 
+    /**
+     * Method print list of available commands
+     */
     private void showListOfCommands(){
         Commands.CommandName[] commands = controller.getListOfCommands();
         boolean isAdminMode = controller.isAdminMode();
@@ -20,10 +23,14 @@ public class ConsoleView implements View {
         }
     }
 
+    /**
+     * Entry point of view
+     */
     public void start(){
         System.out.println("Welcome to our airline.");
         System.out.println("Please, choose command:");
 
+        // to display the menu first
         int commandNumber = Commands.getID(Commands.CommandName.HELP);
         Scanner in = new Scanner(System.in);
 
@@ -45,12 +52,10 @@ public class ConsoleView implements View {
 
                     String parameters = controller.getCommandArguments(commandNumber);
                     if (!parameters.equals("")) {
-                        System.out.println("Please, enter this parameters by spaces: " + parameters);
+                        // if method need arguments he return info about them
 
+                        System.out.println("Please, enter this parameters by spaces: " + parameters);
                         parameters = in.nextLine();
-                    }
-                    else {
-                        parameters = "";
                     }
 
                     System.out.println(controller.executeTask(commandNumber, parameters));

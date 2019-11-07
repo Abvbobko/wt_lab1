@@ -15,6 +15,11 @@ public class ClientServiceImpl implements ClientService {
     private User currentUser = null;
     private DAOFactory daoObjectFactory = DAOFactory.getInstance();
 
+    /**
+     *
+     * @return list of current user tickets
+     * @throws ServiceException if user is not authorized
+     */
     public ArrayList<Ticket> getTickets() throws ServiceException {
         if (isAuthorized()) {
             return currentUser.getTickets();
@@ -26,6 +31,10 @@ public class ClientServiceImpl implements ClientService {
         return currentUser != null;
     }
 
+    /**
+     *
+     * @return true if user is admin
+     */
     public boolean isAdminMode(){
         if (currentUser == null) {
             return false;
@@ -33,8 +42,15 @@ public class ClientServiceImpl implements ClientService {
         return currentUser.isAdmin();
     }
 
+    /**
+     *
+     * @param login user login
+     * @param password user password
+     * @throws ServiceException if there are some troubles with sign in
+     *      (like incorrect entered data)
+     */
     @Override
-    public void singIn(String login, String password) throws ServiceException {
+    public void signIn(String login, String password) throws ServiceException {
         if (login == null || login.isEmpty()){
             throw new ServiceException("Error. Incorrect login");
         }
@@ -48,6 +64,12 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
+    /**
+     *
+     * @param login login of new user
+     * @param password password of new user
+     * @throws ServiceException if user with this login exist or incorrect entered data
+     */
     @Override
     public void registration(String login, String password) throws ServiceException {
         if (login == null || login.isEmpty()){
@@ -67,6 +89,11 @@ public class ClientServiceImpl implements ClientService {
 
     }
 
+    /**
+     *
+     * @param flightID number of desired flight
+     * @throws ServiceException if troubles with authorization, flightID or others
+     */
     @Override
     public void butTicket(int flightID) throws ServiceException {
         if (!isAuthorized()) {
@@ -86,6 +113,12 @@ public class ClientServiceImpl implements ClientService {
         throw new ServiceException("Incorrect flight index.");
     }
 
+    /**
+     * Method remove ticket from user tickets
+     *
+     * @param ticketNumber undesired ticket
+     * @throws ServiceException if ticket with this number doesn't exist
+     */
     @Override
     public void returnTicket(int ticketNumber) throws ServiceException {
         if ((ticketNumber >= 0) && (ticketNumber < currentUser.getTickets().size())) {

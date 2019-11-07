@@ -10,7 +10,6 @@ final class CommandProvider {
     private final Map<Commands.CommandName, ConsoleCommand> repository = new HashMap<>();
 
     CommandProvider(){
-
         repository.put(Commands.CommandName.SIGN_IN, new SignIn());
         repository.put(Commands.CommandName.REGISTRATION, new Register());
         repository.put(Commands.CommandName.ADD_FLIGHT, new AddFlight());

@@ -17,6 +17,8 @@ public class BuyTicket implements ConsoleCommand {
     public String getParametersInfo() {
         String flights = flightService.getFlightsList();
         if (!flights.equals("")) {
+            // if there are some flights in flights list
+
             return "Enter flight id.\n" + flights;
         }
         System.out.println("There are no flights.");

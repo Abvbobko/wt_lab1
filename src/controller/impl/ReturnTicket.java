@@ -15,6 +15,7 @@ public class ReturnTicket implements ConsoleCommand {
         if (clientService.isAuthorized()) {
             try {
                 if (!clientService.getTickets().isEmpty()) {
+                    // if user has tickets - print them
                     int i = 0;
                     for (Ticket ticket:
                             clientService.getTickets()) {
@@ -36,6 +37,8 @@ public class ReturnTicket implements ConsoleCommand {
     @Override
     public String execute(String request) {
         String response = "";
+        // if request is "" it's mean that user hasn't tickets
+
         if (!request.equals("")) {
             try {
                 int ticketNumber = Integer.parseInt(request);

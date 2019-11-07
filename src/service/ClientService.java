@@ -12,7 +12,7 @@ public interface ClientService {
     boolean isAdminMode();
     boolean isAuthorized();
     List<Ticket> getTickets() throws ServiceException;
-    void singIn(String login, String password) throws ServiceException;
+    void signIn(String login, String password) throws ServiceException;
     void singOut();
     void registration(String login, String password) throws ServiceException;
     void butTicket(int flightID) throws ServiceException;
