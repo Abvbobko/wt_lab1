@@ -11,6 +11,7 @@ public class Commands{
         REGISTRATION("Register", true),
         ADD_FLIGHT("Add flight", false),
         BUY_TICKET("Buy ticket", true),
+        RETURN_TICKET("Return ticket", true),
         SHOW_TICKETS("Show tickets", true),
         EXIT("Exit", true);
 

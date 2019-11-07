@@ -92,6 +92,20 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public void returnTicket(int ticketNumber) throws ServiceException {
+        if ((ticketNumber > 0) && (ticketNumber < currentUser.getTickets().size())) {
+            currentUser.getTickets().remove(ticketNumber);
+            UserDAO userDAO = daoObjectFactory.getUserDAO();
+            try {
+                userDAO.updateUser(currentUser);
+            } catch (DAOException e) {
+                throw new ServiceException(e.getMessage());
+            }
+        }
+
+    }
+
+    @Override
     public void singOut() {
         currentUser = null;
     }
