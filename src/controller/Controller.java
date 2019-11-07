@@ -26,6 +26,9 @@ public final class Controller {
 
     public String getCommandArguments(int commandNumber){
         Commands.CommandName commandName = Commands.getValueFromID(commandNumber);
+        if (commandName == null) {
+            throw new NullPointerException("There is no such command number.");
+        }
         return ((ConsoleCommand)provider.getCommand(commandName)).getParametersInfo();
     }
 

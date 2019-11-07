@@ -31,8 +31,8 @@ public class ReturnTicket implements ConsoleCommand {
                 return "";
             }
         }
-        System.out.println("Аuthorization required.");
-        return "";
+        throw new RuntimeException("Аuthorization required.");
+        //return "";
     }
 
     @Override

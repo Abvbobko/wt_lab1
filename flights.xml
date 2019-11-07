@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_192" class="java.beans.XMLDecoder">
- <object class="java.util.ArrayList"/>
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="beans.Flight">
+    <void property="arrivalTime">
+     <string>14:40</string>
+    </void>
+    <void property="dateOfFlight">
+     <string>2019-12-12</string>
+    </void>
+    <void property="departureTime">
+     <string>12:40</string>
+    </void>
+    <void property="fromCity">
+     <string>Minsk</string>
+    </void>
+    <void property="toCity">
+     <string>London</string>
+    </void>
+   </object>
+  </void>
+ </object>
 </java>

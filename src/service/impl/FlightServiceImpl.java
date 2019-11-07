@@ -53,7 +53,7 @@ public class FlightServiceImpl implements FlightService {
                     LocalTime.parse(flightAttributes[4]/*, timeFormatter*/)/*, (int)flightAttributes[5]*/
             ));
         } catch (DAOException | ArrayIndexOutOfBoundsException e) {
-            throw new ServiceException(e.getMessage());
+            throw new ServiceException("Error, check the entered parameters");
         }
     }
 

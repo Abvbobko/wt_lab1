@@ -93,7 +93,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void returnTicket(int ticketNumber) throws ServiceException {
-        if ((ticketNumber > 0) && (ticketNumber < currentUser.getTickets().size())) {
+        if ((ticketNumber >= 0) && (ticketNumber < currentUser.getTickets().size())) {
             currentUser.getTickets().remove(ticketNumber);
             UserDAO userDAO = daoObjectFactory.getUserDAO();
             try {
