@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface FlightDAO {
     void addFlight(Flight flight) throws DAOException;
-    void deleteFlight(Flight flight) throws DAOException;
+    void deleteFlight(int flightID) throws DAOException;
     int getFlightsNumber();
     Flight getFlightByID(int flightID);
 }

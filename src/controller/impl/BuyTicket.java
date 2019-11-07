@@ -19,19 +19,22 @@ public class BuyTicket implements ConsoleCommand {
         if (!flights.equals("")) {
             return "Enter flight id.\n" + flights;
         }
-        return "There are no flights.";
+        System.out.println("There are no flights.");
+        return "";
     }
 
     @Override
     public String execute(String request) {
 
-        String response;
-        try {
-            int flightID = Integer.parseInt(request);
-            clientService.butTicket(flightID);
-            response = "Success";
-        } catch (ServiceException e) {
-            response = e.getMessage();
+        String response = "";
+        if (!request.equals("")) {
+            try {
+                int flightID = Integer.parseInt(request);
+                clientService.butTicket(flightID);
+                response = "Success";
+            } catch (ServiceException e) {
+                response = e.getMessage();
+            }
         }
         return response;
     }

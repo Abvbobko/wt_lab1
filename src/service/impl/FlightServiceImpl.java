@@ -31,6 +31,16 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
+    public void deleteFlight(int flightID) throws ServiceException {
+        try {
+            flightDAO.deleteFlight(flightID);
+        } catch (DAOException | ArrayIndexOutOfBoundsException e) {
+            throw new ServiceException(e.getMessage());
+        }
+
+    }
+
+    @Override
     public void addFlight(String[] flightAttributes) throws ServiceException {
         try {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);

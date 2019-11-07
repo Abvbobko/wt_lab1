@@ -64,9 +64,9 @@ public class XmlFlightDAO implements FlightDAO {
     }
 
     @Override
-    public void deleteFlight(Flight flight) throws DAOException {
-       // flights.remove(flightID);
-        flights.remove(flight);
+    public void deleteFlight(int flightID) throws DAOException {
+        flights.remove(flightID);
+        //flights.remove(flight);
         writeFlightsToFile();
     }
 

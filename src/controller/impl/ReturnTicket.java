@@ -37,7 +37,7 @@ public class ReturnTicket implements ConsoleCommand {
 
     @Override
     public String execute(String request) {
-        String response;
+        String response = "";
         if (!request.equals("")) {
             try {
                 int ticketNumber = Integer.parseInt(request);
@@ -46,8 +46,8 @@ public class ReturnTicket implements ConsoleCommand {
             } catch (ServiceException e) {
                 response = e.getMessage();
             }
-            return response;
+
         }
-        return "";
+        return response;
     }
 }
