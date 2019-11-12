@@ -5,7 +5,7 @@ import beans.Ticket;
 
 import java.util.Comparator;
 
-public class SortTicketsByDate implements Comparator<Ticket> {
+public class SortTicketsByDateComparator implements Comparator<Ticket> {
 
     @Override
     public int compare(Ticket firstTicket, Ticket secondTicket) {

@@ -5,9 +5,9 @@ import java.time.LocalDate;
 
 public class Plane implements Serializable, Comparable {
     private Pilot pilot;
-    final private String brand;
-    final private int numberOfSeats;
-    final private LocalDate yearOfManufacture;
+    private final String brand;
+    private final int numberOfSeats;
+    private final LocalDate yearOfManufacture;
 
     Plane(String brand, int numberOfSeats, LocalDate yearOfManufacture){
         this.brand = brand;

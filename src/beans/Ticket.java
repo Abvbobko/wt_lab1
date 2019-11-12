@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Ticket implements Serializable, Comparable {
 
     private Flight flight;
+    //сделать привязку к flightID (flight Hash)
 
     public void setFlight(Flight flight) {
         this.flight = flight;
